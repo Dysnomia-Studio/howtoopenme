@@ -1,6 +1,3 @@
-<?php
-include(DIR_VIEW.'menu.php');
-?>
 <section>
 	<h1><?= RESULTS_FOR_SEARCH.' "'.$s ?>":</h1>
 

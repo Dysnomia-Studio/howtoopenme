@@ -1,7 +1,5 @@
 <?php 
 $debut = round(microtime(true) * 1000);
-
-$lang = new Language(); // Init Translation system
 ?>
 <!DOCTYPE html>
 <!-- 
@@ -40,12 +38,16 @@ $lang = new Language(); // Init Translation system
 					}
 
 					if(file_exists(DIR_VIEW.$pageData['pageName'])) {
+						include(DIR_VIEW.'menu.php');
+						
 						include(DIR_VIEW.$pageData['pageName']);
 					} else {
 						http_response_code(404);
 						include_once(DIR_ERRORS.'404.html');
 						die();
 					}
+
+					include_once(DIR_VIEW.'footer.php');
 
 					if($pageData['writeCache']) {
 						$pageContent = ob_get_contents(); // copie du contenu du tampon dans une chaîne

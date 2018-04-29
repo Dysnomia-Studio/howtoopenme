@@ -7,7 +7,7 @@
 $s = (isset($_GET['s']))?$_GET['s']:'';
 $s = htmlentities(htmlspecialchars($s));
 
-if(strlen($s) < 3) { // On ne lance pas de recherche si le terme est trop petit
+if(strlen($s) < 1) { // On ne lance pas de recherche si le terme est trop petit
 	$pageData['pageName'] = 'index.php';
 	$pageData['error'] = TOO_SMALL_SEARCH;
 } else {

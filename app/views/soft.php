@@ -1,10 +1,7 @@
-<?php
-include(DIR_VIEW.'menu.php');
-?>
-<section class="corps">
-	<h1><?= $pageData['data']['name'] ?></h1>
-	<p class="smallname">(<?= $pageData['data']['smallname'] ?>)</p>
-	<p class="website"><?= OFFICIAL_WEBSITE.': <a href="'.$pageData['data']['url'].'">'.$pageData['data']['url'].'</a>' ?></p>
+<section class="corps center-corps">
+	<h1 class="view-title1"><?= $pageData['data']['name'] ?></h1>
+	<p class="smallname view-title2"><?= $pageData['data']['smallname'] ?></p>
+	<p class="view-website"><?= OFFICIAL_WEBSITE.': <a href="'.$pageData['data']['url'].'">'.$pageData['data']['url'].'</a>' ?></p>
 	<p><?= $pageData['data']['desc'] ?></p>
 
 	<table>

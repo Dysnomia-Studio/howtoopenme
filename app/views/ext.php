@@ -1,9 +1,6 @@
-<?php
-include(DIR_VIEW.'menu.php');
-?>
-<section class="corps">
-	<h1><?= $pageData['data']['ext'] ?></h1>
-	<span class="fullname"><?= $pageData['data']['name'] ?></span>
+<section class="corps center-corps">
+	<h1 class="view-title1">.<?= $pageData['data']['ext'] ?></h1>
+	<p class="view-title2" class="fullname"><?= $pageData['data']['name'] ?></p>
 	<p><?= $pageData['data']['desc'] ?></p>
 
 	<table>
