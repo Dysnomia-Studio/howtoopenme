@@ -1,6 +1,6 @@
 <?php
 /**
- * Format URL: view?s=XXXXXXX
+ * Format URL: search?s=XXXXXXX
  *   s: terme recherché
  */
 

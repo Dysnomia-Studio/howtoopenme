@@ -20,8 +20,8 @@ $lang = new Language(); // Init Translation system
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="shortcut icon" type="image/png" href="./img/favicon.png"/>
-		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="./lib/css/style.css"/>
-		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="./lib/graph/style.css"/>
+		<link href="https://fonts.googleapis.com/css?family=Gugi|Titillium+Web" rel="stylesheet">
+		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="./css/style.css"/>
 	</head>
 	<body>
 		<?php

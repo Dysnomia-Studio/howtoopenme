@@ -1,0 +1,106 @@
+/**
+ * Global design
+ */
+html, body {
+	padding: 0;
+	margin: 0;
+
+	font-family: 'Titillium Web', sans-serif;
+
+	background: #f7f8fa;
+}
+
+/**
+ * Menu
+ */
+.menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 2.2em;
+
+	padding: 0 1em;
+
+	background: #ecf0f1;
+
+	font-family: 'Gugi', cursive;
+}
+.menu-title a {
+	color: #333333;
+	text-decoration: none;
+	font-weight: bold;
+
+	font-size: 1.5em;
+}
+.menu-language {
+	position: absolute;
+	right: 2.2em;
+	top: 0.2rem;
+
+	height: 1.8rem;	
+}
+
+/**
+ * Corps
+ */
+.corps {
+	margin-top: 1.5em;
+}
+
+/**
+ * Search Bar
+ */
+.search-bar input {
+	box-sizing: border-box;
+
+	font-family: 'Titillium Web', sans-serif;
+}
+.search-bar input[type=text] {
+	padding-left: 1em;
+}
+.search-bar input[type=submit] {
+	background: #5599dd;
+	border: 0;
+
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+
+	box-shadow: 
+		inset 0 -1px 0 1px rgba(0, 0, 0, 0.1), 
+		inset 0 -10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/**
+ * Index
+ */
+.index-search {
+	background: url('../img/background.jpg');
+	background-size: cover;
+
+	width: 100%;
+	height: 80vh;
+}
+.index-search form {
+	position: absolute;
+	top: calc(40vh - 1.5rem);
+	left: 10vw;
+}
+.index-search input {
+	height: 3rem;
+	font-size: 1.2rem;
+}
+.index-search input[type=text] {
+	width: 65vw;
+}
+.index-search input[type=submit] {
+	width: 15vw;
+}
+.index-error {
+	background: rgb(200,45,45,1);
+	color: #dddddd;
+	font-size: 1.2em;
+	text-align: center;
+	padding: 0.2em;
+}

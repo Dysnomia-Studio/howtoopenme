@@ -24,3 +24,6 @@ define('EXPORT','Exportation/Sauvegarde');
 define('EXECUTE','Execution');
 
 define('FREEWARE','Gratuit ?');
+
+// Errors
+define('NO_RESULT_FOUND','Nous sommes desolés, mais aucun resultat n\'a été trouvé dans notre base de donnée');
