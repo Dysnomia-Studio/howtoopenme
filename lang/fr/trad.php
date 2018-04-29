@@ -13,7 +13,7 @@ define('SEARCH','Rechercher');
 define('SEARCH_PLACEHOLDER','Entrez une extension (Ex: png) ou un logiciel (Ex: Bloc Note)');
 
 // Recherche
-define('RESULTS_FOR_SEARCH','Resultats pour la recherche');
+define('RESULTS_FOR_SEARCH','Résultats pour la recherche');
 
 // Informations
 define('OFFICIAL_WEBSITE','Site officiel');
@@ -26,4 +26,5 @@ define('EXECUTE','Execution');
 define('FREEWARE','Gratuit ?');
 
 // Errors
-define('NO_RESULT_FOUND','Nous sommes desolés, mais aucun resultat n\'a été trouvé dans notre base de donnée');
+define('NO_RESULT_FOUND','Nous sommes désolés, mais aucun résultat n\'a été trouvé dans notre base de données.');
+define('TOO_SMALL_SEARCH','Votre recherche est trop courte.');
