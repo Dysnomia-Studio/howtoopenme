@@ -37,6 +37,6 @@ if(strlen($s) < 3) { // On ne lance pas de recherche si le terme est trop petit
 
 		include(DIR_CTRL.'view.php');
 	} else {
-		// Do Nothing
+		// Do nothing
 	}
 }

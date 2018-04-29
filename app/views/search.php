@@ -20,8 +20,8 @@ include(DIR_VIEW.'menu.php');
 	<?php
 		foreach ($softwares as $soft) {
 			$soft = json_decode(json_encode($soft), true);
-
-			echo '<li><a href="view?soft='.$soft['smallname'].'">'.$soft['smallname'].'</a></li>';
+			
+			echo '<li><a href="view?soft='.$soft['smallname'].'">'.$soft['name'].'</a></li>';
 		}
 	?>
 	</ul>
