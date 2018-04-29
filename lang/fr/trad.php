@@ -19,8 +19,8 @@ define('RESULTS_FOR_SEARCH','Resultats pour la recherche');
 define('OFFICIAL_WEBSITE','Site officiel');
 
 define('POSSIBLE_ACTIONS','Actions possibles');
-define('READ','Ouverture');
-define('WRITE','Modification');
+define('IMPORT','Importation/Ouverture');
+define('EXPORT','Exportation/Sauvegarde');
 define('EXECUTE','Execution');
 
 define('FREEWARE','Gratuit ?');

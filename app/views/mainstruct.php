@@ -12,7 +12,7 @@ $lang = new Language(); // Init Translation system
 -->
 <html>
 	<head>
-		<title>Nom du site</title>
+		<title>HowToOpen.Me</title>
 		<meta charset="UTF-8">
 		<!-- On prepare le charset , les mots clés , le fichier css et l'icone du site -->
 		<meta name="keywords" content="">

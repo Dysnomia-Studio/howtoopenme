@@ -43,16 +43,32 @@ if(isset($pageData['data'])) {
 	}
 
 	// On traite les données
-	foreach ($pageData['data']['extAndSoftList'] as $extAndSoft) {
+	foreach ($pageData['data']['extAndSoftList'] as $key => $extAndSoft) {
 		$extAndSoft = json_decode(json_encode($extAndSoft), true);
 
-		$read = ($extAndSoft['use'] >= 4);
-		$write = ($extAndSoft['use'] >= 2 && $extAndSoft['use'] < 4) || $extAndSoft['use'] >= 6;
-		$exec = (($extAndSoft['use']%2) == 1);
+		// Cas d'utilisations
+		$extAndSoft['import'] = ($extAndSoft['use'] >= 4);
+		$extAndSoft['export'] = ($extAndSoft['use'] >= 2 && $extAndSoft['use'] < 4) || $extAndSoft['use'] >= 6;
+		$extAndSoft['exec'] = (($extAndSoft['use']%2) == 1);
 
+		// Nom du logiciel
 		if(isset($pageData['data']['ext'])) { // Si extension
 			$softMngr = new SoftwaresManager();
 			$software = $softMngr->get($extAndSoft['soft']);
+			$extAndSoft['name'] = $software['name'];
 		}
+
+		$pageData['data']['extAndSoftList'][$key] = $extAndSoft;
 	}
+}
+
+function drawCheckBox($value=false) {
+	$retour = '<input type="checkbox"';
+
+	if($value) {
+		$retour .= ' checked';
+	}
+	$retour .= ' disabled>';
+	
+	return $retour;
 }
