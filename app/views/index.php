@@ -11,7 +11,7 @@
 		</form>
 	</div>
 </section>
-<section class="corps">
+<section class="corps corps-ad">
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<!-- Howtoopen.me - Responsive -->
 	<ins class="adsbygoogle"

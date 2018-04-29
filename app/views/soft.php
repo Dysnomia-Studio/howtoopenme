@@ -4,6 +4,21 @@
 	<p class="view-website"><?= OFFICIAL_WEBSITE.': <a href="'.$pageData['data']['url'].'">'.$pageData['data']['url'].'</a>' ?></p>
 	<p><?= $pageData['data']['desc'] ?></p>
 
+</section>
+<section class="corps corps-ad">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- Howtoopen.me - Responsive -->
+	<ins class="adsbygoogle"
+		 style="display:block"
+		 data-ad-client="***REMOVED***"
+		 data-ad-slot="***REMOVED***"
+		 data-ad-format="auto"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</section>
+<section class="corps center-corps">
+
 	<table>
 		<tr><th rowspan="2"><?= EXTENSION ?></th><th colspan="4"><?= POSSIBLE_ACTIONS ?></th></tr>
 		<tr><th><?= IMPORT ?></th><th><?= EXPORT ?></th><th><?= EXECUTE ?></th></tr>
