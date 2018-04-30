@@ -20,7 +20,7 @@
 <section class="corps center-corps corps-view">
 
 	<table>
-		<tr><th rowspan="2"><?= EXTENSION ?></th><th colspan="4"><?= POSSIBLE_ACTIONS ?></th></tr>
+		<tr><th rowspan="2"><?= EXTENSION ?></th><th colspan="3"><?= POSSIBLE_ACTIONS ?></th></tr>
 		<tr><th><?= IMPORT ?></th><th><?= EXPORT ?></th><th><?= EXECUTE ?></th></tr>
 		<?php
 		foreach ($pageData['data']['extAndSoftList'] as $extAndSoft) {

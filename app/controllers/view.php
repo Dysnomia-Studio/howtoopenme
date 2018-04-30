@@ -72,12 +72,21 @@ if(isset($pageData['data'])) {
 }
 
 function drawStatus($value=0) {
-	$retour = '<input type="checkbox"';
+	$retour = '<img src="img/';
 
-	if($value) {
-		$retour .= ' checked';
+	switch ($value) {
+		case 0:
+			$retour .= 'no';
+			break;
+		case 1:
+			$retour .= 'tick';
+			break;
+		case 2:
+			$retour .= 'warning';
+			break;
 	}
-	$retour .= ' disabled>';
+
+	$retour .= '.svg">';
 	
 	return $retour;
 }

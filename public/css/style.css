@@ -225,6 +225,20 @@ footer a {
 .corps-view a:hover {
 	text-decoration: underline;
 }
+.corps-view td {
+	text-align: center;
+}
+.corps-view th {
+	padding: 0.2em 0.5em;
+}
+.corps-view img {
+	box-sizing: border-box;
+	
+	width: 2em;
+
+	margin: 0 auto;
+	padding: 0.2em;
+}
 
 /**
  * Search
