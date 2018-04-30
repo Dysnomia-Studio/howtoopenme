@@ -19,16 +19,25 @@
 <section class="corps center-corps corps-view">
 
 	<table>
-		<tr><th rowspan="2"><?= SOFTWARE ?></th><th colspan="3"><?= POSSIBLE_ACTIONS ?></th><th rowspan="2"><?= FREEWARE ?></th></tr>
-		<tr><th><?= IMPORT ?></th><th><?= EXPORT ?></th><th><?= EXECUTE ?></th></tr>
+		<tr><th rowspan="2"><?= SOFTWARE ?></th><th rowspan="2"></th><th colspan="3"><?= POSSIBLE_ACTIONS ?></th><th rowspan="2"></th><th colspan="5"><?= OPERATING_SYSTEM ?><th rowspan="2"></th><th rowspan="2"><?= FREEWARE ?></th></tr>
+		<tr><th><?= IMPORT ?></th><th><?= EXPORT ?></th><th><?= EXECUTE ?></th>
+			<th>Windows</th><th>MacOS</th><th>GNU/Linux</th><th>Android</th><th>iOS</th></tr>
 		<?php
 		foreach ($pageData['data']['extAndSoftList'] as $extAndSoft) {
 	
 			echo '<tr>
 				<td><a href="view?soft='.$extAndSoft['soft'].'" target="_blank">'.$extAndSoft['name'].'</a></td>
+				<td></td>
 				<td>'.drawStatus($extAndSoft['import']).'</td>
 				<td>'.drawStatus($extAndSoft['export']).'</td>
 				<td>'.drawStatus($extAndSoft['exec']).'</td>
+				<td></td>
+				<td>'.drawStatus($extAndSoft['windows']).'</td>
+				<td>'.drawStatus($extAndSoft['macos']).'</td>
+				<td>'.drawStatus($extAndSoft['linux']).'</td>
+				<td>'.drawStatus($extAndSoft['android']).'</td>
+				<td>'.drawStatus($extAndSoft['ios']).'</td>
+				<td></td>
 				<td>'.drawStatus($extAndSoft['free']).'</td>
 			</tr>';
 		}

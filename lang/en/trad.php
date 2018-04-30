@@ -23,6 +23,8 @@ define('IMPORT','Import/Read');
 define('EXPORT','Export/Save');
 define('EXECUTE','Execute');
 
+define('OPERATING_SYSTEM','Operating System');
+
 define('FREEWARE','Free ?');
 
 // Errors

@@ -65,6 +65,12 @@ if(isset($pageData['data'])) {
 			$softMngr = new SoftwaresManager();
 			$software = $softMngr->get($extAndSoft['soft']);
 			$extAndSoft['name'] = $software['name'];
+
+			$extAndSoft['windows'] = (isset($extAndSoft['windows']))?$extAndSoft['windows']:$software['windows'];
+			$extAndSoft['macos']   = (isset($extAndSoft['macos']))?$extAndSoft['macos']:$software['macos'];
+			$extAndSoft['linux']   = (isset($extAndSoft['linux']))?$extAndSoft['linux']:$software['linux'];
+			$extAndSoft['android'] = (isset($extAndSoft['android']))?$extAndSoft['android']:$software['android'];
+			$extAndSoft['ios']     = (isset($extAndSoft['ios']))?$extAndSoft['ios']:$software['ios'];
 		}
 
 		$pageData['data']['extAndSoftList'][$key] = $extAndSoft;

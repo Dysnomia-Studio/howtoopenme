@@ -117,7 +117,7 @@ footer a {
 }
 .center-corps {
 	width: 100%;
-	max-width: 800px;
+	max-width: 850px;
 
 	margin: 0 auto;
 
@@ -224,6 +224,9 @@ footer a {
 }
 .corps-view a:hover {
 	text-decoration: underline;
+}
+.corps-view table {
+	width: 100%;
 }
 .corps-view td {
 	text-align: center;

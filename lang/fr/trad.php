@@ -19,11 +19,13 @@ define('RESULTS_FOR_SEARCH','Résultats pour la recherche');
 define('OFFICIAL_WEBSITE','Site officiel');
 
 define('POSSIBLE_ACTIONS','Actions possibles');
-define('IMPORT','Importation/Ouverture');
-define('EXPORT','Exportation/Sauvegarde');
+define('IMPORT','Ouverture');
+define('EXPORT','Sauvegarde');
 define('EXECUTE','Execution');
 
-define('FREEWARE','Gratuit ?');
+define('OPERATING_SYSTEM','Système d\'exploitation');
+
+define('FREEWARE','Gratuit');
 
 // Errors
 define('NO_RESULT_FOUND','Nous sommes désolés, mais aucun résultat n\'a été trouvé dans notre base de données.');
