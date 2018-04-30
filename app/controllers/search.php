@@ -26,13 +26,9 @@ if(strlen($s) < 1) { // On ne lance pas de recherche si le terme est trop petit
 		
 	} else if($resultCount == 1) {
 		if(count($extensions) == 1) {
-			$pageData['pageName'] = 'ext.php';
-			$pageData['data'] = json_decode(json_encode($extensions[0]), true);
-
+			echo '<script>window.location.href="view?ext='.json_decode(json_encode($extensions[0]), true)['ext'].'"</script>';
 		} else {
-			$pageData['pageName'] = 'soft.php';
-			$pageData['data'] = json_decode(json_encode($softwares[0]), true);
-
+			echo '<script>window.location.href="view?soft='.json_decode(json_encode($softwares[0]), true)['smallname'].'"</script>';
 		}
 
 		include(DIR_CTRL.'view.php');
