@@ -4,9 +4,8 @@ class SoftwaresManager extends MongoInterface {
 			$aArray = json_decode(json_encode($a), true);
 			$bArray = json_decode(json_encode($b), true);
 
-			return strcasecmp($aArray['smallname'], $bArray['smallname']);
+			return strcasecmp($aArray['name'], $bArray['name']);
 	}
-
 
 	public function search($id) {
 		$retour = array_merge(
@@ -23,6 +22,7 @@ class SoftwaresManager extends MongoInterface {
 
 		return $retour;
 	}
+	
 	public function get($id) {
 		return json_decode(json_encode(
 			$this->getCondContent('howtoopenme','softwares', 

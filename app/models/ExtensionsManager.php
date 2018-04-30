@@ -23,6 +23,7 @@ class ExtensionsManager extends MongoInterface {
 
 		return $retour;
 	}
+	
 	public function get($id) {
 		return json_decode(json_encode(
 			$this->getCondContent('howtoopenme','extensions', 
