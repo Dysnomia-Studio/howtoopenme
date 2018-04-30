@@ -1,7 +1,7 @@
 <section class="corps center-corps corps-view">
 	<h1 class="view-title1"><?= $pageData['data']['name'] ?></h1>
 	<p class="smallname view-title2"><?= $pageData['data']['smallname'] ?></p>
-	<p class="view-website"><?= OFFICIAL_WEBSITE.': <a href="'.$pageData['data']['url'].'">'.$pageData['data']['url'].'</a>' ?></p>
+	<p class="view-website"><?= OFFICIAL_WEBSITE.': <a href="'.$pageData['data']['url'].'" target="_blank">'.$pageData['data']['url'].'</a>' ?></p>
 	<p><?= $pageData['data']['desc'] ?></p>
 
 </section>
@@ -25,7 +25,7 @@
 		<?php
 		foreach ($pageData['data']['extAndSoftList'] as $extAndSoft) {
 			echo '<tr>
-				<td><a href="view?ext='.$extAndSoft['ext'].'" target="_blank">'.$extAndSoft['ext'].'</a></td>
+				<td><a href="view?ext='.$extAndSoft['ext'].'">'.$extAndSoft['ext'].'</a></td>
 				<td>'.drawStatus($extAndSoft['import']).'</td>
 				<td>'.drawStatus($extAndSoft['export']).'</td>
 				<td>'.drawStatus($extAndSoft['exec']).'</td>
