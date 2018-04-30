@@ -228,6 +228,8 @@ footer a {
 .corps-view table {
 	width: 100%;
 	border-collapse: collapse;
+
+
 }
 .corps-view td {
 	text-align: center;
@@ -235,9 +237,10 @@ footer a {
 }
 .corps-view tr:nth-child(even), .corps-view th {
 	background-color: #e2e2e2;
-}
-.corps-view tr {
-	padding: 0.5em 0;
+
+	border-width: 0.2em 0.5em; 
+	border-style: solid; 
+	border-color: #e2e2e2;
 }
 .corps-view th {
 	padding: 0.2em 0.5em;
