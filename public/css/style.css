@@ -123,16 +123,27 @@ footer a {
 
 	padding-top: 1em;
 }
-.corps-flex {
-	display: flex;
+@media (min-width: 750px) {
+	.corps-flex {
+		display: flex;
+	}
 }
 .corps-half {
 	display: inline-block;
 
 	box-sizing: border-box;
-
-	width: 50%;
+	
 	padding: 1em;
+}
+@media (min-width: 750px) {
+	.corps-half {
+		width: 50%;
+	}
+}
+@media (max-width: 749px) {
+	.corps-half {
+		width: 100%;
+	}
 }
 .corps-ad {
 	text-align: center;

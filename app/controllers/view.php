@@ -42,6 +42,15 @@ if(isset($pageData['data'])) {
 		$pageData['data']['extAndSoftList'] = $extSoftMgr->searchByExt($pageData['data']['ext']);
 	}
 
+	// Traduction
+	if(isset($pageData['data']["name_".$lang->getLanguage()])) {
+		$pageData['data']["name"] = $pageData['data']["name_".$lang->getLanguage()];
+	}
+
+	if(isset($pageData['data']["desc_".$lang->getLanguage()])) {
+		$pageData['data']["desc"] = $pageData['data']["desc_".$lang->getLanguage()];
+	}
+
 	// On traite les données
 	foreach ($pageData['data']['extAndSoftList'] as $key => $extAndSoft) {
 		$extAndSoft = json_decode(json_encode($extAndSoft), true);

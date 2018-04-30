@@ -28,3 +28,7 @@ define('FREEWARE','Free ?');
 // Errors
 define('NO_RESULT_FOUND','Sorry, we didn\'t found any corresponding entry in our database.');
 define('TOO_SMALL_SEARCH','Your search is too small.');
+
+// Tops
+define('TOP_EXT','Most viewed extensions');
+define('TOP_SOFT','Most viewed softwares');
