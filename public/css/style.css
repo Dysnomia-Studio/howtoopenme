@@ -185,7 +185,7 @@ footer a {
 }
 .index-search form {
 	position: absolute;
-	top: calc(40vh - 1.5rem);
+	top: calc(40vh - 11rem);
 	left: 10vw;
 }
 .index-search input {
@@ -205,6 +205,13 @@ footer a {
 	text-align: center;
 	padding: 0.2em;
 }
+.index-text {
+	text-align: center;
+	color: white;
+	font-size: 3rem;
+	font-weight: bold;
+	margin-bottom: 6rem;
+}
 
 /**
  * View
@@ -218,6 +225,9 @@ footer a {
 .view-title2 {
 	margin-top: 0;
 }
+.corps-view {
+	padding: 1em 0;
+}
 .corps-view a {
 	color: #5192d3;
 	text-decoration: none;
@@ -225,11 +235,16 @@ footer a {
 .corps-view a:hover {
 	text-decoration: underline;
 }
+.corps-view table, .corps-view tr, .corps-view td, .corps-view th {
+	box-sizing: border-box;
+}
 .corps-view table {
-	width: 100%;
+	max-width: 100%;
+	min-width: 800px;
+
+	margin: 0 auto;
+
 	border-collapse: collapse;
-
-
 }
 .corps-view td {
 	text-align: center;

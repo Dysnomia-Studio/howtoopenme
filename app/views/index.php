@@ -1,6 +1,7 @@
 <section class="corps">
 	<div class="index-search">
 		<form class="search-bar" method="get" action="search">
+			<p class="index-text"><?= HOME_MSG ?></p>
 			<input type="text" name="s" placeholder="<?= SEARCH_PLACEHOLDER ?>" value="<?php if(isset($s)) echo $s; ?>">
 			<input type="submit" value="<?= SEARCH ?>">
 			<?php

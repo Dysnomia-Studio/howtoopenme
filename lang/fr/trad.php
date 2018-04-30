@@ -12,6 +12,8 @@ define('EXTENSIONS','Extensions');
 define('SEARCH','Rechercher');
 define('SEARCH_PLACEHOLDER','Entrez une extension (Ex: png) ou un logiciel (Ex: Bloc Note)');
 
+define('HOME_MSG','Trouvez facilement le logiciel pour ouvrir votre fichier !');
+
 // Recherche
 define('RESULTS_FOR_SEARCH','Résultats pour la recherche');
 

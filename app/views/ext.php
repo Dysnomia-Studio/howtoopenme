@@ -16,7 +16,7 @@
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
 </section>
-<section class="corps center-corps corps-view">
+<section class="corps corps-view">
 
 	<table>
 		<tr><th rowspan="2"><?= SOFTWARE ?></th><th rowspan="2"></th><th colspan="3"><?= POSSIBLE_ACTIONS ?></th><th rowspan="2"></th><th colspan="5"><?= OPERATING_SYSTEM ?><th rowspan="2"></th><th rowspan="2"><?= FREEWARE ?></th></tr>

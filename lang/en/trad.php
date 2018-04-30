@@ -12,6 +12,8 @@ define('EXTENSIONS','Extensions');
 define('SEARCH','Search');
 define('SEARCH_PLACEHOLDER','Type an extension (Ex: png) or a software (Ex: Notepad)');
 
+define('HOME_MSG','Find easily how to open your file !');
+
 // Recherche
 define('RESULTS_FOR_SEARCH','Search results for');
 
