@@ -71,7 +71,7 @@ if(isset($pageData['data'])) {
 	}
 }
 
-function drawCheckBox($value=false) {
+function drawStatus($value=0) {
 	$retour = '<input type="checkbox"';
 
 	if($value) {

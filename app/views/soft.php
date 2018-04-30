@@ -1,4 +1,4 @@
-<section class="corps center-corps">
+<section class="corps center-corps corps-view">
 	<h1 class="view-title1"><?= $pageData['data']['name'] ?></h1>
 	<p class="smallname view-title2"><?= $pageData['data']['smallname'] ?></p>
 	<p class="view-website"><?= OFFICIAL_WEBSITE.': <a href="'.$pageData['data']['url'].'">'.$pageData['data']['url'].'</a>' ?></p>
@@ -17,7 +17,7 @@
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
 </section>
-<section class="corps center-corps">
+<section class="corps center-corps corps-view">
 
 	<table>
 		<tr><th rowspan="2"><?= EXTENSION ?></th><th colspan="4"><?= POSSIBLE_ACTIONS ?></th></tr>
@@ -26,9 +26,9 @@
 		foreach ($pageData['data']['extAndSoftList'] as $extAndSoft) {
 			echo '<tr>
 				<td><a href="view?ext='.$extAndSoft['ext'].'" target="_blank">'.$extAndSoft['ext'].'</a></td>
-				<td>'.drawCheckBox($extAndSoft['import']).'</td>
-				<td>'.drawCheckBox($extAndSoft['export']).'</td>
-				<td>'.drawCheckBox($extAndSoft['exec']).'</td>
+				<td>'.drawStatus($extAndSoft['import']).'</td>
+				<td>'.drawStatus($extAndSoft['export']).'</td>
+				<td>'.drawStatus($extAndSoft['exec']).'</td>
 			</tr>';
 		}
 		?>

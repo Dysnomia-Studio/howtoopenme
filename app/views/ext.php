@@ -1,4 +1,4 @@
-<section class="corps center-corps">
+<section class="corps center-corps corps-view">
 	<h1 class="view-title1">.<?= $pageData['data']['ext'] ?></h1>
 	<p class="view-title2" class="fullname"><?= $pageData['data']['name'] ?></p>
 	<p><?= $pageData['data']['desc'] ?></p>
@@ -16,7 +16,7 @@
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
 </section>
-<section class="corps center-corps">
+<section class="corps center-corps corps-view">
 
 	<table>
 		<tr><th rowspan="2"><?= SOFTWARE ?></th><th colspan="4"><?= POSSIBLE_ACTIONS ?></th><th rowspan="2"><?= FREEWARE ?></th></tr>
@@ -26,10 +26,10 @@
 	
 			echo '<tr>
 				<td><a href="view?soft='.$extAndSoft['soft'].'" target="_blank">'.$extAndSoft['name'].'</a></td>
-				<td>'.drawCheckBox($extAndSoft['import']).'</td>
-				<td>'.drawCheckBox($extAndSoft['export']).'</td>
-				<td>'.drawCheckBox($extAndSoft['exec']).'</td>
-				<td>'.drawCheckBox($extAndSoft['free']).'</td>
+				<td>'.drawStatus($extAndSoft['import']).'</td>
+				<td>'.drawStatus($extAndSoft['export']).'</td>
+				<td>'.drawStatus($extAndSoft['exec']).'</td>
+				<td>'.drawStatus($extAndSoft['free']).'</td>
 			</tr>';
 		}
 		?>

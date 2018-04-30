@@ -121,7 +121,8 @@ footer a {
 
 	margin: 0 auto;
 
-	padding-top: 1em;
+    padding: 1em;
+    box-sizing: border-box;
 }
 @media (min-width: 750px) {
 	.corps-flex {
@@ -217,12 +218,19 @@ footer a {
 .view-title2 {
 	margin-top: 0;
 }
+.corps-view a {
+	color: #5192d3;
+	text-decoration: none;
+}
+.corps-view a:hover {
+	text-decoration: underline;
+}
 
 /**
  * Search
  */
 .search-corps a {
-	color: #000000;
+	color: #5192d3;
 	text-decoration: none;
 }
 .search-corps a:hover {
