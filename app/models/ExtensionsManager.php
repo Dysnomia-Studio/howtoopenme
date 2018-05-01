@@ -7,10 +7,10 @@ class ExtensionsManager extends MongoInterface {
 			return strcasecmp($aArray['ext'], $bArray['ext']);
 	}
 
-	public function search($id) {
+	private function searchRegex($id) {
 		global $lang;
 
-		$retour = array_merge(
+		return array_merge(
 			$this->getCondContent('howtoopenme','extensions', 
 				['ext' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
 			),
@@ -21,6 +21,27 @@ class ExtensionsManager extends MongoInterface {
 				['name_'.$lang->getLanguage() =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
 			)
 		);
+	}
+
+	private function searchAlias($id) {
+		return $this->getCondContent('howtoopenme','aliases', 
+				['alias' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
+			);
+	}
+
+	public function getAliases($id) {
+		return $this->getCondContent('howtoopenme','aliases', 
+				['ext' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
+			);
+	}
+
+	public function search($id) {
+		$retour = $this->searchRegex($id);
+
+		foreach ($this->searchAlias($id) as $value) {
+			$value = json_decode(json_encode($value), true);
+			$retour = array_merge($retour, $this->searchRegex($value["ext"]));
+		}
 
 		$retour = array_unique($retour, SORT_REGULAR);
 

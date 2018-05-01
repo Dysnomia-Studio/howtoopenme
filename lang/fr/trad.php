@@ -20,6 +20,8 @@ define('RESULTS_FOR_SEARCH','Résultats pour la recherche');
 // Informations
 define('OFFICIAL_WEBSITE','Site officiel');
 
+define('ALIASES','Alias');
+
 define('POSSIBLE_ACTIONS','Actions possibles');
 define('IMPORT','Ouverture');
 define('EXPORT','Sauvegarde');
