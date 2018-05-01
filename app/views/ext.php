@@ -1,18 +1,22 @@
 <section class="corps center-corps corps-view">
 	<h1 class="view-title1">.<?= $pageData['data']['ext'] ?></h1>
 	<p class="view-title2" class="fullname"><?= $pageData['data']['name'] ?></p>
-	<p><?php
-		echo ALIASES.': ';
-		$first = true;
-		foreach ($pageData['aliases'] as $value) {
-			if(!$first) { echo ', '; }
+	<?php
+		if(isset($pageData['aliases'])) {
+			$first = true;
+			$append = false;
+			foreach ($pageData['aliases'] as $value) {
+				if($first)  { echo '<p>'.ALIASES.': '; $append = true; }
+				if(!$first) { echo ', '; }
 
-			$value = json_decode(json_encode($value), true);
-			echo $value['alias'];
+				$value = json_decode(json_encode($value), true);
+				echo $value['alias'];
 
-			$first = false;
+				$first = false;
+			}
+			if($append) { echo '</p>'; }
 		}
-		?></p>
+		?>
 	<p><?= $pageData['data']['desc'] ?></p>
 
 </section>
