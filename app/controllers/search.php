@@ -10,6 +10,7 @@ $s = str_replace("-", " ", $s); // On retire les tirets afin d'etendre la recher
 
 if(strlen($s) < 1) { // On ne lance pas de recherche si le terme est trop petit
 	$pageData['pageName'] = 'index.php';
+	$pageData['cacheName'] = DIR_CACHE.'search-small-search.html';
 	$pageData['error'] = TOO_SMALL_SEARCH;
 } else {
 	// Get data from extensions database
@@ -23,6 +24,7 @@ if(strlen($s) < 1) { // On ne lance pas de recherche si le terme est trop petit
 	$resultCount = count($extensions) + count($softwares);
 	if($resultCount == 0) {
 		$pageData['pageName'] = 'index.php';
+		$pageData['cacheName'] = DIR_CACHE.'search-no-result.html';
 		$pageData['error'] = NO_RESULT_FOUND;
 		
 	} else if($resultCount == 1) {
