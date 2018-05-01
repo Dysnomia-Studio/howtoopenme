@@ -22,6 +22,38 @@ body {
 	text-align: center;
 }
 
+/* SCROLLBAR CUSTOM */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: #3e3e3e;
+  border: 0 none #000000;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #999999;
+  border: 0 none #000000;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #999999;
+}
+::-webkit-scrollbar-track:active {
+  background: #DDDDDD;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 /**
  * Footer
  */
@@ -76,6 +108,8 @@ footer a {
 	top: 0;
 	left: 0;
 
+	box-sizing: border-box;
+
 	width: 100%;
 	height: 2.2em;
 
@@ -84,6 +118,8 @@ footer a {
 	background: #ecf0f1;
 
 	font-family: 'Gugi', cursive;
+
+	z-index: 10;
 }
 .menu-title {
 	width: 200px;
@@ -98,7 +134,7 @@ footer a {
 }
 .menu-language {
 	position: absolute;
-	right: 2.2em;
+	right: 0.3em;
 	top: 0.1rem;
 
 	height: 1.8rem;	
@@ -161,6 +197,7 @@ footer a {
 }
 .corps-ad {
 	text-align: center;
+	margin: 1em 0;
 }
 
 /**
@@ -285,6 +322,9 @@ footer a {
 /**
  * Search
  */
+.search-corps {
+	padding: 0 1em;
+}
 .search-corps a {
 	color: #5192d3;
 	text-decoration: none;
