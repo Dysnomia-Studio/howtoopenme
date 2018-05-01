@@ -6,6 +6,7 @@
 
 $s = (isset($_GET['s']))?$_GET['s']:'';
 $s = htmlentities(htmlspecialchars($s));
+$s = str_replace("-", " ", $s); // On retire les tirets afin d'etendre la recherche
 
 if(strlen($s) < 1) { // On ne lance pas de recherche si le terme est trop petit
 	$pageData['pageName'] = 'index.php';

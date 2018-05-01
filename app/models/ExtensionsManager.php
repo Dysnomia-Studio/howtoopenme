@@ -8,12 +8,17 @@ class ExtensionsManager extends MongoInterface {
 	}
 
 	public function search($id) {
+		global $lang;
+
 		$retour = array_merge(
 			$this->getCondContent('howtoopenme','extensions', 
 				['ext' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
 			),
 			$this->getCondContent('howtoopenme','extensions', 
 				['name' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
+			),
+			$this->getCondContent('howtoopenme','extensions', 
+				['name_'.$lang->getLanguage() =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
 			)
 		);
 

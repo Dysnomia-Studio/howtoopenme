@@ -8,12 +8,17 @@ class SoftwaresManager extends MongoInterface {
 	}
 
 	public function search($id) {
+		global $lang;
+		
 		$retour = array_merge(
 			$this->getCondContent('howtoopenme','softwares', 
 				['smallname' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
 			),
 			$this->getCondContent('howtoopenme','softwares', 
 				['name' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
+			),
+			$this->getCondContent('howtoopenme','softwares', 
+				['name_'.$lang->getLanguage() =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
 			)
 		);
 

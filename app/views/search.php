@@ -32,6 +32,11 @@
 		foreach ($softwares as $soft) {
 			$soft = json_decode(json_encode($soft), true);
 			
+			// Traduction
+			if(isset($soft["name_".$lang->getLanguage()])) {
+				$soft["name"] = $soft["name_".$lang->getLanguage()];
+			}
+
 			echo '<li><a href="view?soft='.$soft['smallname'].'">'.$soft['name'].'</a></li>';
 		}
 	?>
