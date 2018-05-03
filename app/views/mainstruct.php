@@ -26,8 +26,6 @@ $debut = round(microtime(true) * 1000);
 			if($pageData['readCache']) { // Read HTML
 				readfile($pageData['cacheName']);
 			} else { // Read PHP
-				include_once(FILE_CONFIG);
-
 				if(file_exists(DIR_VIEW.$pageData['pageName']) || file_exists(DIR_CTRL.$pageData['pageName'])) {
 					if($pageData['writeCache']) {
 						ob_start(); // ouverture du tampon

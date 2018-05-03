@@ -10,7 +10,7 @@
 				if(!$first) { echo ', '; }
 
 				$value = json_decode(json_encode($value), true);
-				echo $value['alias'];
+				echo '.'.$value['alias'];
 
 				$first = false;
 			}
