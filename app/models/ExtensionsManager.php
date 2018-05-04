@@ -1,10 +1,10 @@
 <?php
 class ExtensionsManager extends MongoInterface {
 	private function tri($a, $b) {
-			$aArray = json_decode(json_encode($a), true);
-			$bArray = json_decode(json_encode($b), true);
+		$aArray = json_decode(json_encode($a), true);
+		$bArray = json_decode(json_encode($b), true);
 
-			return strcasecmp($aArray['ext'], $bArray['ext']);
+		return strcasecmp($aArray['ext'], $bArray['ext']);
 	}
 
 	private function searchRegex($id) {

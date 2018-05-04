@@ -1,10 +1,10 @@
 <?php
 class SoftwaresManager extends MongoInterface {
 	private function tri($a, $b) {
-			$aArray = json_decode(json_encode($a), true);
-			$bArray = json_decode(json_encode($b), true);
+		$aArray = json_decode(json_encode($a), true);
+		$bArray = json_decode(json_encode($b), true);
 
-			return strcasecmp($aArray['name'], $bArray['name']);
+		return strcasecmp($aArray['name'], $bArray['name']);
 	}
 
 	public function search($id) {

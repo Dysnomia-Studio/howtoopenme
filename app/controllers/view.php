@@ -28,9 +28,11 @@ if(isset($_GET['ext'])) {
 
 	$pageData['data'] = $softMngr->get($s);
 
-} else if(!isset($pageData['data'])) {
+} 
+
+if(!isset($pageData['data']) || $pageData['data'] == NULL) {
 	http_response_code(404);
-	$pageData['error'] = DIR_ERRORS.'404.html';
+	$pageData['pageName'] = DIR_ERRORS.'404.html';
 }
 
 // Recuperation des liens logiciels/extensions
