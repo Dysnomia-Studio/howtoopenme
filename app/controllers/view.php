@@ -67,7 +67,11 @@ if(isset($pageData['data'])) {
 		if(isset($pageData['data']['ext'])) { // Si extension
 			$softMngr = new SoftwaresManager();
 			$software = $softMngr->get($extAndSoft['soft']);
-			$extAndSoft['name'] = $software['name'];
+			if(isset($software['name_'.$lang->getLanguage()])) {
+				$extAndSoft['name'] = $software['name_'.$lang->getLanguage()];
+			} else {
+				$extAndSoft['name'] = $software['name'];
+			}
 
 			$extAndSoft['windows'] = (isset($extAndSoft['windows']))?$extAndSoft['windows']:$software['windows'];
 			$extAndSoft['macos']   = (isset($extAndSoft['macos']))?$extAndSoft['macos']:$software['macos'];
@@ -77,6 +81,19 @@ if(isset($pageData['data'])) {
 		}
 
 		$pageData['data']['extAndSoftList'][$key] = $extAndSoft;
+	}
+
+
+	if(isset($pageData['data']['ext'])) { // Si extension
+		function cmpsoft($a, $b) {
+			return strcasecmp($a['name'], $b['name']);
+		}
+		usort($pageData['data']['extAndSoftList'], "cmpsoft");
+	} else {
+		function cmpext($a, $b) {
+			return strcasecmp($a['ext'], $b['ext']);
+		}
+		usort($pageData['data']['extAndSoftList'], "cmpext");
 	}
 }
 
