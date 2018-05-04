@@ -4,6 +4,9 @@
  */
 
 // Global
+define('META_KEYS','open, file, extension, picture, music, movie, software');
+define('META_DESC','Find easily which software can open your file and 	vice versa !');
+
 define('SOFTWARE','Software');
 define('SOFTWARES','Softwares');
 define('EXTENSION','Extension');

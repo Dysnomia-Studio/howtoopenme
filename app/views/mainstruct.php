@@ -13,8 +13,8 @@ $debut = round(microtime(true) * 1000);
 		<title>HowToOpen.Me</title>
 		<meta charset="UTF-8">
 		<!-- On prepare le charset , les mots clés , le fichier css et l'icone du site -->
-		<meta name="keywords" content="">
-		<meta name="description" content="" />
+		<meta name="keywords" content="<?= META_KEYS ?>">
+		<meta name="description" content="<?= META_DESC ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="shortcut icon" type="image/png" href="./img/favicon.png"/>
