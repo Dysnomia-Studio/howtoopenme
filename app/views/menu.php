@@ -3,7 +3,7 @@
 
 		<?php
 		if($pageData['pageName'] != "index.php") { ?>
-			<form class="search-bar" method="get" action="search">
+			<form class="search-bar" method="get" action="/search">
 				<input type="text" name="s" placeholder="<?= SEARCH_PLACEHOLDER ?>">
 				<input type="submit" value="<?= SEARCH ?>">
 			</form>
