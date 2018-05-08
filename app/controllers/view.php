@@ -98,7 +98,7 @@ if(isset($pageData['data'])) {
 }
 
 function drawStatus($value=0) {
-    $retour = '<img src="img/';
+    $retour = '<img src="/img/';
 
     switch ($value) {
         case 0:
