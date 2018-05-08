@@ -29,9 +29,9 @@ if(strlen($s) < 1) { // On ne lance pas de recherche si le terme est trop petit
 		
 	} else if($resultCount == 1) {
 		if(count($extensions) == 1) {
-			echo '<script>window.location.href="view?ext='.json_decode(json_encode($extensions[0]), true)['ext'].'"</script>';
+			echo '<script>window.location.href="/ext/'.json_decode(json_encode($extensions[0]), true)['ext'].'"</script>';
 		} else {
-			echo '<script>window.location.href="view?soft='.json_decode(json_encode($softwares[0]), true)['smallname'].'"</script>';
+			echo '<script>window.location.href="/soft/'.json_decode(json_encode($softwares[0]), true)['smallname'].'"</script>';
 		}
 
 		include(DIR_CTRL.'view.php');

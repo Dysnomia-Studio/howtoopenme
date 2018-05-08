@@ -1,118 +1,118 @@
 <?php
 /**
- * Format URL: view?ext=XXX ou view?soft=XXXXXXX
+ * Format URL Reecrite: view?ext=XXX ou view?soft=XXXXXXX
  *   ext: extension voulue
  *   soft: logiciel voulu
  */
 
 if(isset($_GET['ext'])) {
-	$pageData['pageName'] = 'ext.php';
+    $pageData['pageName'] = 'ext.php';
 
-	// Get data from extensions database
-	$extMngr = new ExtensionsManager();
+    // Get data from extensions database
+    $extMngr = new ExtensionsManager();
 
-	$s = (isset($_GET['ext']))?$_GET['ext']:'';
-	$s = htmlentities(htmlspecialchars($s));
-	
-	$pageData['data'] = $extMngr->get($s);
-	$pageData['aliases'] = $extMngr->getAliases($s);
+    $s = (isset($_GET['ext']))?$_GET['ext']:'';
+    $s = htmlentities(htmlspecialchars($s));
+    
+    $pageData['data'] = $extMngr->get($s);
+    $pageData['aliases'] = $extMngr->getAliases($s);
 
 } else if(isset($_GET['soft'])) {
-	$pageData['pageName'] = 'soft.php';
+    $pageData['pageName'] = 'soft.php';
 
-	// Get data from extensions database
-	$softMngr = new SoftwaresManager();
+    // Get data from extensions database
+    $softMngr = new SoftwaresManager();
 
-	$s = (isset($_GET['soft']))?$_GET['soft']:'';
-	$s = htmlentities(htmlspecialchars($s));
+    $s = (isset($_GET['soft']))?$_GET['soft']:'';
+    $s = htmlentities(htmlspecialchars($s));
 
-	$pageData['data'] = $softMngr->get($s);
+    $pageData['data'] = $softMngr->get($s);
 
 } 
 
 if(!isset($pageData['data']) || $pageData['data'] == NULL) {
-	http_response_code(404);
-	$pageData['pageName'] = DIR_ERRORS.'404.html';
+    http_response_code(404);
+    $pageData['pageName'] = DIR_ERRORS.'404.html';
 }
 
 // Recuperation des liens logiciels/extensions
 if(isset($pageData['data'])) {
-	if(isset($pageData['data']['smallname'])) {
-		$extSoftMgr = new ExtAndSoftLinksManager();
-		$pageData['data']['extAndSoftList'] = $extSoftMgr->searchBySoft($pageData['data']['smallname']);
-	} else {
-		$extSoftMgr = new ExtAndSoftLinksManager();
-		$pageData['data']['extAndSoftList'] = $extSoftMgr->searchByExt($pageData['data']['ext']);
-	}
+    if(isset($pageData['data']['smallname'])) {
+        $extSoftMgr = new ExtAndSoftLinksManager();
+        $pageData['data']['extAndSoftList'] = $extSoftMgr->searchBySoft($pageData['data']['smallname']);
+    } else {
+        $extSoftMgr = new ExtAndSoftLinksManager();
+        $pageData['data']['extAndSoftList'] = $extSoftMgr->searchByExt($pageData['data']['ext']);
+    }
 
-	// Traduction
-	if(isset($pageData['data']["name_".$lang->getLanguage()])) {
-		$pageData['data']["name"] = $pageData['data']["name_".$lang->getLanguage()];
-	}
+    // Traduction
+    if(isset($pageData['data']["name_".$lang->getLanguage()])) {
+        $pageData['data']["name"] = $pageData['data']["name_".$lang->getLanguage()];
+    }
 
-	if(isset($pageData['data']["desc_".$lang->getLanguage()])) {
-		$pageData['data']["desc"] = $pageData['data']["desc_".$lang->getLanguage()];
-	}
+    if(isset($pageData['data']["desc_".$lang->getLanguage()])) {
+        $pageData['data']["desc"] = $pageData['data']["desc_".$lang->getLanguage()];
+    }
 
-	// On traite les données
-	foreach ($pageData['data']['extAndSoftList'] as $key => $extAndSoft) {
-		$extAndSoft = json_decode(json_encode($extAndSoft), true);
+    // On traite les données
+    foreach ($pageData['data']['extAndSoftList'] as $key => $extAndSoft) {
+        $extAndSoft = json_decode(json_encode($extAndSoft), true);
 
-		// Cas d'utilisations
-		$extAndSoft['import'] = ($extAndSoft['use'] >= 4);
-		$extAndSoft['export'] = ($extAndSoft['use'] >= 2 && $extAndSoft['use'] < 4) || $extAndSoft['use'] >= 6;
-		$extAndSoft['exec'] = (($extAndSoft['use']%2) == 1);
+        // Cas d'utilisations
+        $extAndSoft['import'] = ($extAndSoft['use'] >= 4);
+        $extAndSoft['export'] = ($extAndSoft['use'] >= 2 && $extAndSoft['use'] < 4) || $extAndSoft['use'] >= 6;
+        $extAndSoft['exec'] = (($extAndSoft['use']%2) == 1);
 
-		// Nom du logiciel
-		if(isset($pageData['data']['ext'])) { // Si extension
-			$softMngr = new SoftwaresManager();
-			$software = $softMngr->get($extAndSoft['soft']);
-			if(isset($software['name_'.$lang->getLanguage()])) {
-				$extAndSoft['name'] = $software['name_'.$lang->getLanguage()];
-			} else {
-				$extAndSoft['name'] = $software['name'];
-			}
+        // Nom du logiciel
+        if(isset($pageData['data']['ext'])) { // Si extension
+            $softMngr = new SoftwaresManager();
+            $software = $softMngr->get($extAndSoft['soft']);
+            if(isset($software['name_'.$lang->getLanguage()])) {
+                $extAndSoft['name'] = $software['name_'.$lang->getLanguage()];
+            } else {
+                $extAndSoft['name'] = $software['name'];
+            }
 
-			$extAndSoft['windows'] = (isset($extAndSoft['windows']))?$extAndSoft['windows']:$software['windows'];
-			$extAndSoft['macos']   = (isset($extAndSoft['macos']))?$extAndSoft['macos']:$software['macos'];
-			$extAndSoft['linux']   = (isset($extAndSoft['linux']))?$extAndSoft['linux']:$software['linux'];
-			$extAndSoft['android'] = (isset($extAndSoft['android']))?$extAndSoft['android']:$software['android'];
-			$extAndSoft['ios']     = (isset($extAndSoft['ios']))?$extAndSoft['ios']:$software['ios'];
-		}
+            $extAndSoft['windows'] = (isset($extAndSoft['windows']))?$extAndSoft['windows']:$software['windows'];
+            $extAndSoft['macos']   = (isset($extAndSoft['macos']))?$extAndSoft['macos']:$software['macos'];
+            $extAndSoft['linux']   = (isset($extAndSoft['linux']))?$extAndSoft['linux']:$software['linux'];
+            $extAndSoft['android'] = (isset($extAndSoft['android']))?$extAndSoft['android']:$software['android'];
+            $extAndSoft['ios']     = (isset($extAndSoft['ios']))?$extAndSoft['ios']:$software['ios'];
+        }
 
-		$pageData['data']['extAndSoftList'][$key] = $extAndSoft;
-	}
+        $pageData['data']['extAndSoftList'][$key] = $extAndSoft;
+    }
 
 
-	if(isset($pageData['data']['ext'])) { // Si extension
-		function cmpsoft($a, $b) {
-			return strcasecmp($a['name'], $b['name']);
-		}
-		usort($pageData['data']['extAndSoftList'], "cmpsoft");
-	} else {
-		function cmpext($a, $b) {
-			return strcasecmp($a['ext'], $b['ext']);
-		}
-		usort($pageData['data']['extAndSoftList'], "cmpext");
-	}
+    if(isset($pageData['data']['ext'])) { // Si extension
+        function cmpsoft($a, $b) {
+            return strcasecmp($a['name'], $b['name']);
+        }
+        usort($pageData['data']['extAndSoftList'], "cmpsoft");
+    } else {
+        function cmpext($a, $b) {
+            return strcasecmp($a['ext'], $b['ext']);
+        }
+        usort($pageData['data']['extAndSoftList'], "cmpext");
+    }
 }
 
 function drawStatus($value=0) {
-	$retour = '<img src="img/';
+    $retour = '<img src="img/';
 
-	switch ($value) {
-		case 0:
-			$retour .= 'no';
-			break;
-		case 1:
-			$retour .= 'tick';
-			break;
-		case 2:
-			$retour .= 'warning';
-			break;
-	}
+    switch ($value) {
+        case 0:
+            $retour .= 'no';
+            break;
+        case 1:
+            $retour .= 'tick';
+            break;
+        case 2:
+            $retour .= 'warning';
+            break;
+    }
 
-	$retour .= '.svg">';
-	
-	return $retour;
+    $retour .= '.svg">';
+    
+    return $retour;
 }

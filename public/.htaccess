@@ -1,5 +1,8 @@
 RewriteEngine On
 
+RewriteRule ^ext/(.*)$ view.php?ext=$1 [QSA]
+RewriteRule ^soft/(.*)$ view.php?soft=$1 [QSA]
+
 RewriteCond %{REQUEST_FILENAME} !(.*)\.(css|jpg|png|gif|svg|js|ttf|ico|mp3|map|xml)$
 RewriteRule ^(.*)$ index.php?route=$1 [QSA,L]
 

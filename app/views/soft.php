@@ -25,7 +25,7 @@
 		<?php
 		foreach ($pageData['data']['extAndSoftList'] as $extAndSoft) {
 			echo '<tr>
-				<td><a href="view?ext='.$extAndSoft['ext'].'">'.$extAndSoft['ext'].'</a></td>
+				<td><a href="/ext/'.$extAndSoft['ext'].'">'.$extAndSoft['ext'].'</a></td>
 				<td>'.drawStatus($extAndSoft['import']).'</td>
 				<td>'.drawStatus($extAndSoft['export']).'</td>
 				<td>'.drawStatus($extAndSoft['exec']).'</td>

@@ -17,9 +17,9 @@ $debut = round(microtime(true) * 1000);
 		<meta name="description" content="<?= META_DESC ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="shortcut icon" type="image/png" href="./img/favicon.png"/>
+		<link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
 		<link href="https://fonts.googleapis.com/css?family=Gugi|Titillium+Web" rel="stylesheet">
-		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="./css/style.css"/>
+		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="/css/style.css"/>
 	</head>
 	<body>
 		<?php
@@ -63,5 +63,5 @@ $debut = round(microtime(true) * 1000);
 			}
 		?>
 	</body>
-	<!-- Page generated in <?= ($debut - round(microtime(true) * 1000)) ?> ms -->
+	<!-- Page generated in <?= (round(microtime(true) * 1000) - $debut) ?> ms -->
 </html>

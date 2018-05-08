@@ -21,7 +21,7 @@
 		foreach ($extensions as $ext) {
 			$ext = json_decode(json_encode($ext), true);
 
-			echo '<li><a href="view?ext='.$ext['ext'].'">'.$ext['ext'].'</a></li>';
+			echo '<li><a href="/ext/'.$ext['ext'].'">'.$ext['ext'].'</a></li>';
 		}
 	?>
 	</ul>
@@ -37,7 +37,7 @@
 				$soft["name"] = $soft["name_".$lang->getLanguage()];
 			}
 
-			echo '<li><a href="view?soft='.$soft['smallname'].'">'.$soft['name'].'</a></li>';
+			echo '<li><a href="/soft/'.$soft['smallname'].'">'.$soft['name'].'</a></li>';
 		}
 	?>
 	</ul>
