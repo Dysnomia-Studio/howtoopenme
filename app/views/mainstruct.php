@@ -23,6 +23,17 @@ $debut = round(microtime(true) * 1000);
 	</head>
 	<body>
 		<?php
+			if(isset($_GET['ext'])) {
+			    $s = (isset($_GET['ext']))?$_GET['ext']:'';
+			    $s = htmlentities(htmlspecialchars($s));
+			} elseif(isset($_GET['soft'])) {
+			    $s = (isset($_GET['soft']))?$_GET['soft']:'';
+			    $s = htmlentities(htmlspecialchars($s));
+			}
+
+			include(DIR_CTRL.'stats.php');
+
+			// Code
 			if($pageData['readCache']) { // Read HTML
 				readfile($pageData['cacheName']);
 			} else { // Read PHP

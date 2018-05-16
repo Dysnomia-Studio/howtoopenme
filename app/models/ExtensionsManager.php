@@ -57,4 +57,42 @@ class ExtensionsManager extends MongoInterface {
             )[0]
         ), true);
     }
+
+    public function sortByDescViews() {
+        $command = new MongoDB\Driver\Command([
+            'aggregate' => 'extViews',
+            'pipeline' => [
+                ['$match' => ['date' => ['$gt' => (time() - 7 * 24 * 3600) ] ] ],
+                //['$match' => ['ext' => 'png' ] ],
+                ['$group' => ['_id' => '$ext', 'sum' => ['$sum' => '$viewCount']]],
+                ['$sort' => ['sum' => -1]]
+            ],
+            'cursor' => new stdClass 
+        ]);
+
+        return $this->manager->executeCommand('howtoopenme', $command);
+    }
+
+    public function incViewCount($page) {
+        $bulkUpdate = new MongoDB\Driver\BulkWrite();
+        $filter = [   
+            'date' => time() - (time() % (24 * 3600)),
+            'ext' => $page
+        ];
+
+        $content = $filter;
+        $content['viewCount'] = 0;
+
+        // Insert if needed
+        $bulkUpdate->update(
+            $filter,
+            ['$setOnInsert' => $content ],
+            ['upsert' => true]);
+
+        $bulkUpdate->update(
+            $filter,
+            ['$inc' => ['viewCount' => 1] ]);
+
+        $this->manager->executeBulkWrite('howtoopenme.extViews', $bulkUpdate);
+    }
 }

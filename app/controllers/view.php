@@ -10,24 +10,17 @@ if(isset($_GET['ext'])) {
 
     // Get data from extensions database
     $extMngr = new ExtensionsManager();
-
-    $s = (isset($_GET['ext']))?$_GET['ext']:'';
-    $s = htmlentities(htmlspecialchars($s));
     
     $pageData['data'] = $extMngr->get($s);
     $pageData['aliases'] = $extMngr->getAliases($s);
-
+    
 } else if(isset($_GET['soft'])) {
     $pageData['pageName'] = 'soft.php';
 
     // Get data from extensions database
     $softMngr = new SoftwaresManager();
 
-    $s = (isset($_GET['soft']))?$_GET['soft']:'';
-    $s = htmlentities(htmlspecialchars($s));
-
     $pageData['data'] = $softMngr->get($s);
-
 } 
 
 if(!isset($pageData['data']) || $pageData['data'] == NULL) {

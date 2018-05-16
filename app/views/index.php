@@ -28,31 +28,23 @@
 	<div class="corps-half">
 		<h2 class="center-title"><?= TOP_EXT ?></h2>
 		<ol>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
+			<?php
+			for($i=0; $i<min(10, count($extensions)); $i++) {
+
+				echo '<li><a href="https://howtoopen.me/ext/'.$extensions[$i]['_id'].'">'.$extensions[$i]['_id'].'</a></li>';
+			}
+			?>
 		</ol>
 	</div>
 	<div class="corps-half">
 		<h2 class="center-title"><?= TOP_SOFT ?></h2>
 		<ol>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
+			<?php
+			for($i=0; $i<min(10, count($softwares)); $i++) {
+
+				echo '<li><a href="https://howtoopen.me/ext/'.$softwares[$i]['_id'].'">'.$softwares[$i]['_id'].'</a></li>';
+			}
+			?>
 		</ol>
 	</div>
 </section>
