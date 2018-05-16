@@ -325,10 +325,10 @@ footer a {
 .search-corps {
 	padding: 0 1em;
 }
-.search-corps a {
+.ranks-corps, .search-corps a {
 	color: #5192d3;
 	text-decoration: none;
 }
-.search-corps a:hover {
+.ranks-corps, .search-corps a:hover {
 	text-decoration: underline;
 }

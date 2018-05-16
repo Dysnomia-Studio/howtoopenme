@@ -24,7 +24,7 @@
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
 </section>
-<section class="corps center-corps corps-flex">
+<section class="corps center-corps corps-flex ranks-corps">
 	<div class="corps-half">
 		<h2 class="center-title"><?= TOP_EXT ?></h2>
 		<ol>
