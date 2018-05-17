@@ -5,9 +5,9 @@
 			<input type="text" name="s" placeholder="<?= SEARCH_PLACEHOLDER ?>" value="<?php if(isset($s)) echo $s; ?>">
 			<input type="submit" value="<?= SEARCH ?>">
 			<?php
-				if(isset($pageData['error'])) {
-					echo '<p class="index-error">'.$pageData['error'].'</p>';
-				}
+			if(isset($pageData['error'])) {
+				echo '<p class="index-error">'.$pageData['error'].'</p>';
+			}
 			?>
 		</form>
 	</div>
@@ -30,7 +30,6 @@
 		<ol>
 			<?php
 			for($i=0; $i<min(10, count($extensions)); $i++) {
-
 				echo '<li><a href="https://howtoopen.me/ext/'.$extensions[$i]['_id'].'">'.$extensions[$i]['_id'].'</a></li>';
 			}
 			?>
@@ -41,8 +40,7 @@
 		<ol>
 			<?php
 			for($i=0; $i<min(10, count($softwares)); $i++) {
-
-				echo '<li><a href="https://howtoopen.me/ext/'.$softwares[$i]['_id'].'">'.$softwares[$i]['_id'].'</a></li>';
+				echo '<li><a href="https://howtoopen.me/soft/'.$softwares[$i]['_id'].'">'.$softwares[$i]['_id'].'</a></li>';
 			}
 			?>
 		</ol>

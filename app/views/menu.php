@@ -19,9 +19,9 @@
 	    <?php 
 	    if($lang->getLanguage() == 'en') { ?>
 	    <script type="text/javascript">
-			window.addEventListener('load', function(){
-					changed--;
-					iconSelect.setSelectedIndex(1);
+			window.addEventListener('load', function() {
+				changed--;
+				iconSelect.setSelectedIndex(1);
 			});
 		</script>
 		<?php } ?>
