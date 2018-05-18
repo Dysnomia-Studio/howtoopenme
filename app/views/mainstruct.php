@@ -24,14 +24,14 @@ $debut = round(microtime(true) * 1000);
 	<body>
 		<?php
 			if(isset($_GET['ext'])) {
-			    $s = (isset($_GET['ext']))?$_GET['ext']:'';
 			    $s = htmlentities(htmlspecialchars($s));
 			} elseif(isset($_GET['soft'])) {
-			    $s = (isset($_GET['soft']))?$_GET['soft']:'';
 			    $s = htmlentities(htmlspecialchars($s));
 			}
 
-			include(DIR_CTRL.'stats.php');
+			if(file_exists(DIR_VIEW.$pageData['pageName']) || file_exists(DIR_CTRL.$pageData['pageName'])) {
+				include(DIR_CTRL.'stats.php');
+			}
 
 			// Code
 			if($pageData['readCache']) { // Read HTML
