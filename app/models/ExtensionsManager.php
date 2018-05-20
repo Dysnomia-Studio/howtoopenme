@@ -51,10 +51,13 @@ class ExtensionsManager extends MongoInterface {
     }
     
     public function get($id) {
+        $content = $this->getCondContent('howtoopenme','extensions', 
+                ['ext' =>  strtolower($id)]);
+            
+        if(count($content) == 0) { return $content; }
+
         return json_decode(json_encode(
-            $this->getCondContent('howtoopenme','extensions', 
-                ['ext' =>  strtolower($id)]
-            )[0]
+            $content[0]
         ), true);
     }
 

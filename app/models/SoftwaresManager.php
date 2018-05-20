@@ -27,12 +27,16 @@ class SoftwaresManager extends MongoInterface {
 
         return $retour;
     }
-    
+
     public function get($id) {
-        return json_decode(json_encode(
-            $this->getCondContent('howtoopenme','softwares', 
+        $content = $this->getCondContent('howtoopenme','softwares', 
                 ['smallname' =>  new \MongoDB\BSON\Regex('^'.preg_quote($id).'$', 'i')]
-            )[0]
+            );
+            
+        if(count($content) == 0) { return $content; }
+
+        return json_decode(json_encode(
+            $content[0]
         ), true);
     }
 
