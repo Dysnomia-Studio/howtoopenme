@@ -5,7 +5,7 @@ class Router {
 
 	function __construct() {
 		global $config;
-		$cacheBlacklist = $config['cacheBlacklist'];
+		$this->cacheBlacklist = $config['cacheBlacklist'];
 	}
 
 	public function get($pagename) {
