@@ -19,9 +19,9 @@
 					<td>
 						<ul>
 							<li><h3>Reseaux sociaux</h3></li>
-							<li><a href="redir/facebook.php">Facebook</a></li>
+							<!--<li><a href="redir/facebook.php">Facebook</a></li>
 							<li><a href="redir/twitter.php">Twitter</a></li>
-							<li><a href="redir/youtube.php">Youtube</a></li>
+							<li><a href="redir/youtube.php">Youtube</a></li>-->
 							<li><a href="***REMOVED***">Discord</a></li>
 						</ul>
 					</td>
