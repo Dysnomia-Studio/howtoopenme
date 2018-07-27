@@ -4,7 +4,7 @@
  */
 
 // Global
-define('META_KEYS','ouverture, fichier, extension, image, musique, video, programme');
+define('META_KEYS','ouverture, image, musique, video, programme, comment, ouvrir, un, fichier, avec, extension');
 define('META_DESC','Trouvez facilement avec quel logiciel ouvrir votre fichier et vice versa !');
 
 define('SOFTWARE','Logiciel');
