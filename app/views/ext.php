@@ -2,6 +2,16 @@
 	<h1 class="view-title1">.<?= $pageData['data']['ext'] ?></h1>
 	<p class="view-title2" class="fullname"><?= $pageData['data']['name'] ?></p>
 	<?php
+		if(isset($pageData['data']['MIMEType'])) {
+			echo '<p class="view-title2" class="mimietype"><u>MIME:</u> '.$pageData['data']['MIMEType'].'</p>';
+		} else {
+			echo '<p class="view-title2" class="mimietype"><u>MIME:</u>  '.$pageData['data']['MIMEType'].'</p>';
+		}
+
+		if(isset($pageData['data']['FileType'])) {
+			echo '<p class="view-title2" class="mimietype"><u>'.FILETYPE.':</u>  '.$pageData['data']['FileType'].'</p>';
+		}
+
 		if(isset($pageData['aliases'])) {
 			$first = true;
 			$append = false;

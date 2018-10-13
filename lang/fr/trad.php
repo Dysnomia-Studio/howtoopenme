@@ -23,6 +23,8 @@ define('RESULTS_FOR_SEARCH','Résultats pour la recherche');
 // Informations
 define('OFFICIAL_WEBSITE','Site officiel');
 
+define('FILETYPE','Type de fichier');
+
 define('ALIASES','Alias');
 
 define('POSSIBLE_ACTIONS','Actions possibles');
