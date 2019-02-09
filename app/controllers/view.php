@@ -33,9 +33,11 @@ if(isset($pageData['data'])) {
     if(isset($pageData['data']['smallname'])) {
         $extSoftMgr = new ExtAndSoftLinksManager();
         $pageData['data']['extAndSoftList'] = $extSoftMgr->searchBySoft($pageData['data']['smallname']);
-    } else {
+    } else if(isset($pageData['data']['ext'])) {
         $extSoftMgr = new ExtAndSoftLinksManager();
         $pageData['data']['extAndSoftList'] = $extSoftMgr->searchByExt($pageData['data']['ext']);
+    } else {
+        $pageData['data']['extAndSoftList'] = [];
     }
 
     // Traduction

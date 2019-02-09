@@ -4,8 +4,6 @@
 	<?php
 		if(isset($pageData['data']['MIMEType'])) {
 			echo '<p class="view-title2" class="mimietype"><u>MIME:</u> '.$pageData['data']['MIMEType'].'</p>';
-		} else {
-			echo '<p class="view-title2" class="mimietype"><u>MIME:</u>  '.$pageData['data']['MIMEType'].'</p>';
 		}
 
 		if(isset($pageData['data']['FileType'])) {
