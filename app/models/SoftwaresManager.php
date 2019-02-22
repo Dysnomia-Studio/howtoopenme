@@ -41,40 +41,26 @@ class SoftwaresManager extends SQLInterface {
     }
 
     public function sortByDescViews() {
-        /*$command = new MongoDB\Driver\Command([
-            'aggregate' => 'softViews',
-            'pipeline' => [
-                ['$match' => ['date' => ['$gt' => (time() - 7 * 24 * 3600) ] ] ],
-                ['$group' => ['_id' => '$soft', 'sum' => ['$sum' => '$viewCount']]],
-                ['$sort' => ['sum' => -1]]
-            ],
-            'cursor' => new stdClass 
-        ]);
-
-        return $this->manager->executeCommand('howtoopenme', $command);*/
-        return [];
+        return $this->selectQuery('
+            SELECT SUM("viewCount") as somme, soft
+                FROM public."softViews"
+                WHERE "date" >= :currDate
+                GROUP BY soft
+                ORDER BY somme DESC
+                LIMIT 10'
+            , [ 'currDate' => (time() - 7 * 24 * 3600) ]);
     }
 
     public function incViewCount($page) {
-        /*$bulkUpdate = new MongoDB\Driver\BulkWrite();
-        $filter = [   
-            'date' => time() - (time() % (24 * 3600)),
-            'soft' => $page
-        ];
-
-        $content = $filter;
-        $content['viewCount'] = 0;
-
-        // Insert if needed
-        $bulkUpdate->update(
-            $filter,
-            ['$setOnInsert' => $content ],
-            ['upsert' => true]);
-
-        $bulkUpdate->update(
-            $filter,
-            ['$inc' => ['viewCount' => 1] ]);
-
-        $this->manager->executeBulkWrite('howtoopenme.softViews', $bulkUpdate);*/
+        $this->updateQuery('INSERT INTO public."softViews"(
+            soft, "date", "viewCount")
+            VALUES (:soft, :currDate, 1)
+            ON CONFLICT (soft, "date") DO
+            UPDATE SET "viewCount" = public."softViews"."viewCount" + 1;',
+            [
+                'soft' => $page,
+                'currDate' => time() - (time() % (24 * 3600)),
+            ]
+        );
     }
 }

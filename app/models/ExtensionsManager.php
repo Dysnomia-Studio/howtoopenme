@@ -62,41 +62,26 @@ class ExtensionsManager extends SQLInterface {
     }
 
     public function sortByDescViews() {
-        /*$command = new MongoDB\Driver\Command([
-            'aggregate' => 'extViews',
-            'pipeline' => [
-                ['$match' => ['date' => ['$gt' => (time() - 7 * 24 * 3600) ] ] ],
-                //['$match' => ['ext' => 'png' ] ],
-                ['$group' => ['_id' => '$ext', 'sum' => ['$sum' => '$viewCount']]],
-                ['$sort' => ['sum' => -1]]
-            ],
-            'cursor' => new stdClass 
-        ]);
-
-        return $this->manager->executeCommand('howtoopenme', $command);*/
-        return [];
+        return $this->selectQuery('
+            SELECT SUM("viewCount") as somme, ext
+                FROM public."extViews"
+                WHERE "date" >= :currDate
+                GROUP BY ext
+                ORDER BY somme DESC
+                LIMIT 10'
+            , [ 'currDate' => (time() - 7 * 24 * 3600) ]);
     }
 
     public function incViewCount($page) {
-        /* $bulkUpdate = new MongoDB\Driver\BulkWrite();
-        $filter = [   
-            'date' => time() - (time() % (24 * 3600)),
-            'ext' => $page
-        ];
-
-        $content = $filter;
-        $content['viewCount'] = 0;
-
-        // Insert if needed
-        $bulkUpdate->update(
-            $filter,
-            ['$setOnInsert' => $content ],
-            ['upsert' => true]);
-
-        $bulkUpdate->update(
-            $filter,
-            ['$inc' => ['viewCount' => 1] ]);
-
-        $this->manager->executeBulkWrite('howtoopenme.extViews', $bulkUpdate);*/
+        $this->updateQuery('INSERT INTO public."extViews"(
+            ext, "date", "viewCount")
+            VALUES (:ext, :currDate, 1)
+            ON CONFLICT (ext, "date") DO
+            UPDATE SET "viewCount" = public."extViews"."viewCount" + 1;',
+            [
+                'ext' => $page,
+                'currDate' => time() - (time() % (24 * 3600)),
+            ]
+        );
     }
 }
