@@ -1,5 +1,5 @@
 <?php
-class SoftwaresManager extends MongoInterface {
+class SoftwaresManager extends SQLInterface {
     private function tri($a, $b) {
         $aArray = json_decode(json_encode($a), true);
         $bArray = json_decode(json_encode($b), true);
@@ -11,14 +11,14 @@ class SoftwaresManager extends MongoInterface {
         global $lang;
         
         $retour = array_merge(
-            $this->getCondContent('howtoopenme','softwares', 
-                ['smallname' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
+            $this->getILIKECondContent('public."softwares"', 
+                ['smallname' =>  preg_quote($id)]
             ),
-            $this->getCondContent('howtoopenme','softwares', 
-                ['name' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
+            $this->getILIKECondContent('public."softwares"', 
+                ['name' =>  preg_quote($id)]
             ),
-            $this->getCondContent('howtoopenme','softwares', 
-                ['name_'.$lang->getLanguage() =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
+            $this->getILIKECondContent('public."softwares"', 
+                ['name_'.$lang->getLanguage() =>  preg_quote($id)]
             )
         );
 
@@ -29,8 +29,8 @@ class SoftwaresManager extends MongoInterface {
     }
 
     public function get($id) {
-        $content = $this->getCondContent('howtoopenme','softwares', 
-                ['smallname' =>  new \MongoDB\BSON\Regex('^'.preg_quote($id).'$', 'i')]
+        $content = $this->getCondContent('public."softwares"', 
+                ['smallname' =>  strtolower($id)]
             );
             
         if(count($content) == 0) { return $content; }
@@ -41,7 +41,7 @@ class SoftwaresManager extends MongoInterface {
     }
 
     public function sortByDescViews() {
-        $command = new MongoDB\Driver\Command([
+        /*$command = new MongoDB\Driver\Command([
             'aggregate' => 'softViews',
             'pipeline' => [
                 ['$match' => ['date' => ['$gt' => (time() - 7 * 24 * 3600) ] ] ],
@@ -51,11 +51,12 @@ class SoftwaresManager extends MongoInterface {
             'cursor' => new stdClass 
         ]);
 
-        return $this->manager->executeCommand('howtoopenme', $command);
+        return $this->manager->executeCommand('howtoopenme', $command);*/
+        return [];
     }
 
     public function incViewCount($page) {
-        $bulkUpdate = new MongoDB\Driver\BulkWrite();
+        /*$bulkUpdate = new MongoDB\Driver\BulkWrite();
         $filter = [   
             'date' => time() - (time() % (24 * 3600)),
             'soft' => $page
@@ -74,6 +75,6 @@ class SoftwaresManager extends MongoInterface {
             $filter,
             ['$inc' => ['viewCount' => 1] ]);
 
-        $this->manager->executeBulkWrite('howtoopenme.softViews', $bulkUpdate);
+        $this->manager->executeBulkWrite('howtoopenme.softViews', $bulkUpdate);*/
     }
 }

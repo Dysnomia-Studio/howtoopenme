@@ -1,5 +1,5 @@
 <?php
-class ExtensionsManager extends MongoInterface {
+class ExtensionsManager extends SQLInterface {
     private function tri($a, $b) {
         $aArray = json_decode(json_encode($a), true);
         $bArray = json_decode(json_encode($b), true);
@@ -11,27 +11,27 @@ class ExtensionsManager extends MongoInterface {
         global $lang;
 
         return array_merge(
-            $this->getCondContent('howtoopenme','extensions', 
-                ['ext' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
+            $this->getILIKECondContent('public."extensions"', 
+                ['ext' => preg_quote($id)]
             ),
-            $this->getCondContent('howtoopenme','extensions', 
-                ['name' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
+            $this->getILIKECondContent('public."extensions"', 
+                ['name' => preg_quote($id)]
             ),
-            $this->getCondContent('howtoopenme','extensions', 
-                ['name_'.$lang->getLanguage() =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
+            $this->getILIKECondContent('public."extensions"', 
+                ['name_'.$lang->getLanguage() => preg_quote($id)]
             )
         );
     }
 
     private function searchAlias($id) {
-        return $this->getCondContent('howtoopenme','aliases', 
-                ['alias' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
+        return $this->getILIKECondContent('public."aliases"', 
+                ['alias' => preg_quote($id)]
             );
     }
 
     public function getAliases($id) {
-        return $this->getCondContent('howtoopenme','aliases', 
-                ['ext' =>  new \MongoDB\BSON\Regex(preg_quote($id), 'i')]
+        return $this->getILIKECondContent('public."aliases"', 
+                ['ext' => preg_quote($id)]
             );
     }
 
@@ -51,7 +51,7 @@ class ExtensionsManager extends MongoInterface {
     }
     
     public function get($id) {
-        $content = $this->getCondContent('howtoopenme','extensions', 
+        $content = $this->getCondContent('public."extensions"', 
                 ['ext' =>  strtolower($id)]);
             
         if(count($content) == 0) { return $content; }
@@ -62,7 +62,7 @@ class ExtensionsManager extends MongoInterface {
     }
 
     public function sortByDescViews() {
-        $command = new MongoDB\Driver\Command([
+        /*$command = new MongoDB\Driver\Command([
             'aggregate' => 'extViews',
             'pipeline' => [
                 ['$match' => ['date' => ['$gt' => (time() - 7 * 24 * 3600) ] ] ],
@@ -73,11 +73,12 @@ class ExtensionsManager extends MongoInterface {
             'cursor' => new stdClass 
         ]);
 
-        return $this->manager->executeCommand('howtoopenme', $command);
+        return $this->manager->executeCommand('howtoopenme', $command);*/
+        return [];
     }
 
     public function incViewCount($page) {
-        $bulkUpdate = new MongoDB\Driver\BulkWrite();
+        /* $bulkUpdate = new MongoDB\Driver\BulkWrite();
         $filter = [   
             'date' => time() - (time() % (24 * 3600)),
             'ext' => $page
@@ -96,6 +97,6 @@ class ExtensionsManager extends MongoInterface {
             $filter,
             ['$inc' => ['viewCount' => 1] ]);
 
-        $this->manager->executeBulkWrite('howtoopenme.extViews', $bulkUpdate);
+        $this->manager->executeBulkWrite('howtoopenme.extViews', $bulkUpdate);*/
     }
 }
