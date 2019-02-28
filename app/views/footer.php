@@ -36,7 +36,7 @@
 			<table>
 				<tr class="second-footer">
 					<td>HowToOpenMe - Crée par <a href="https://dysnomia.studio/" target="_blank">Dysnomia</a><br/>
-					Copyright 2018 - Tout droits reservés</td>
+					Copyright 2018-<?= date('Y') ?> - Tout droits reservés</td>
 				</tr>
 			</table>
 		</footer>
