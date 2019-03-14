@@ -20,6 +20,8 @@ $debut = round(microtime(true) * 1000);
 		<link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
 		<link href="https://fonts.googleapis.com/css?family=Gugi|Titillium+Web" rel="stylesheet">
 		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="/css/style.css"/>
+
+		<link rel="search" type="application/opensearchdescription+xml" title="How to open me" href="/opensearch.xml">
 	</head>
 	<body>
 		<?php
