@@ -58,6 +58,8 @@ body {
  * Footer
  */
 footer {
+	box-sizing: border-box;
+
 	/* Couleurs et police */
 	background-color: #1D1D1D;
 	color: white;
@@ -66,6 +68,7 @@ footer {
 	/* Positionnements */
 	font-size: 0.7em;
 	width: 100%;
+	padding: 1em;
 	vertical-align: bottom;
 
 	position: absolute;
@@ -80,7 +83,6 @@ footer table, footer table tr {
 footer a {
 	color: white;
 }
-
 /* Liens */
 .first-footer td {
 	min-width: 25%;
@@ -88,6 +90,7 @@ footer a {
 }
 .first-footer td ul {
 	list-style: none;
+	padding: 0;
 }
 .first-footer a {
 	text-decoration: none;
@@ -243,10 +246,10 @@ footer a {
 	font-size: 1.2rem;
 }
 .index-search input[type=text] {
-	width: 65vw;
+	width: calc(80vw - 120px);
 }
 .index-search input[type=submit] {
-	width: 15vw;
+	width: 120px;
 }
 .index-error {
 	background: rgb(200,45,45,1);
@@ -258,9 +261,20 @@ footer a {
 .index-text {
 	text-align: center;
 	color: white;
-	font-size: 3rem;
 	font-weight: bold;
 	margin-bottom: 6rem;
+}
+
+@media (min-width: 500px) {
+	.index-text {
+		font-size: 3rem;
+	}
+}
+
+@media (max-width: 499px) {
+	.index-text {
+		font-size: 1.5rem;
+	}
 }
 
 /**
