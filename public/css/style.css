@@ -245,7 +245,7 @@ footer a {
 	height: 3rem;
 	font-size: 1.2rem;
 }
-.index-search input[type=text] {
+.index-search input[type=search] {
 	width: calc(80vw - 120px);
 }
 .index-search input[type=submit] {
