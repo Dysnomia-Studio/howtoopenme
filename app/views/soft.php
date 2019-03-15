@@ -1,7 +1,9 @@
 <section class="corps center-corps corps-view">
 	<h1 class="view-title1"><?= $pageData['data']['name'] ?></h1>
 	<p class="smallname view-title2"><?= $pageData['data']['smallname'] ?></p>
+	<?php if($pageData['data']['url'] !== null) { ?>
 	<p class="view-website"><?= OFFICIAL_WEBSITE.': <a href="'.$pageData['data']['url'].'" target="_blank">'.$pageData['data']['url'].'</a>' ?></p>
+	<?php } ?>
 	<p><?= $pageData['data']['desc'] ?></p>
 
 </section>
