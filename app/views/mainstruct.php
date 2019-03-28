@@ -75,6 +75,11 @@ $debut = round(microtime(true) * 1000);
 				}
 			}
 		?>
+        <script type="text/javascript" src="/js/dropFile.js"></script>
+        <div id="drop-overlay">
+            <img src="img/dropFile.png">
+            <?= DROP_FILE ?>
+        </div>
 	</body>
 	<!-- Page generated in <?= (round(microtime(true) * 1000) - $debut) ?> ms -->
 </html>
