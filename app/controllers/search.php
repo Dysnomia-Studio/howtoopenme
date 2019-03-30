@@ -27,11 +27,11 @@ if(strlen($s) < 1) { // On ne lance pas de recherche si le terme est trop petit
 		$pageData['cacheName'] = DIR_CACHE.'search-no-result.html';
 		$pageData['error'] = NO_RESULT_FOUND;
 		
-	} else if($resultCount == 1) {
+	} else if($resultCount == 1 && ($extensions[0]['ext'] === $s || $softwares[0]['smallname'] === $s)) {
 		if(count($extensions) == 1) {
-			echo '<script>window.location.href="/ext/'.json_decode(json_encode($extensions[0]), true)['ext'].'"</script>';
+			echo '<script>window.location.href="/ext/'.$extensions[0]['ext'].'"</script>';
 		} else {
-			echo '<script>window.location.href="/soft/'.json_decode(json_encode($softwares[0]), true)['smallname'].'"</script>';
+			echo '<script>window.location.href="/soft/'.$softwares[0]['smallname'].'"</script>';
 		}
 
 		include(DIR_CTRL.'view.php');
