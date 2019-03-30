@@ -10,17 +10,9 @@ class ExtensionsManager extends SQLInterface {
     private function searchRegex($id) {
         global $lang;
 
-        return array_merge(
-            $this->getILIKECondContent('public."extensions"', 
+        return $this->getILIKECondContent('public."extensions"', 
                 ['ext' => preg_quote($id)]
-            ),
-            $this->getILIKECondContent('public."extensions"', 
-                ['name' => preg_quote($id)]
-            ),
-            $this->getILIKECondContent('public."extensions"', 
-                ['name_'.$lang->getLanguage() => preg_quote($id)]
-            )
-        );
+            );
     }
 
     private function searchAlias($id) {
