@@ -30,7 +30,7 @@
 		<ol>
 			<?php
 			for($i=0; $i<min(10, count($extensions)); $i++) {
-				echo '<li><a href="https://howtoopen.me/ext/'.$extensions[$i]['ext'].'">'.$extensions[$i]['ext'].'</a></li>';
+				echo '<li><a href="https://howtoopen.me/ext/'.$extensions[$i]['ext'].'">.'.$extensions[$i]['ext'].'</a></li>';
 			}
 			?>
 		</ol>
@@ -40,7 +40,7 @@
 		<ol>
 			<?php
 			for($i=0; $i<min(10, count($softwares)); $i++) {
-				echo '<li><a href="https://howtoopen.me/soft/'.$softwares[$i]['soft'].'">'.$softwares[$i]['soft'].'</a></li>';
+				echo '<li><a href="https://howtoopen.me/soft/'.$softwares[$i]['soft'].'">'.$softwares[$i]['name'].'</a></li>';
 			}
 			?>
 		</ol>

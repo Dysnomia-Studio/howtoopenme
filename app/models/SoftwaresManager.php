@@ -42,12 +42,14 @@ class SoftwaresManager extends SQLInterface {
 
     public function sortByDescViews() {
         return $this->selectQuery('
-            SELECT SUM("viewCount") as somme, soft
+            SELECT *
+            FROM (SELECT SUM("viewCount") as somme, soft
                 FROM public."softViews"
                 WHERE "date" >= :currDate
                 GROUP BY soft
                 ORDER BY somme DESC
-                LIMIT 10'
+                LIMIT 10) top
+            INNER JOIN softwares ON softwares.smallname = top.soft'
             , [ 'currDate' => (time() - 7 * 24 * 3600) ]);
     }
 
