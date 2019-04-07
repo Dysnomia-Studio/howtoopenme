@@ -11,13 +11,13 @@ class SoftwaresManager extends SQLInterface {
         global $lang;
         
         $retour = array_merge(
-            $this->getILIKECondContent('public."softwares"', 
+            $this->getILIKECondContent('softwares', 
                 ['smallname' =>  preg_quote($id)]
             ),
-            $this->getILIKECondContent('public."softwares"', 
+            $this->getILIKECondContent('softwares', 
                 ['name' =>  preg_quote($id)]
             ),
-            $this->getILIKECondContent('public."softwares"', 
+            $this->getILIKECondContent('softwares', 
                 ['name_'.$lang->getLanguage() =>  preg_quote($id)]
             )
         );
@@ -29,7 +29,7 @@ class SoftwaresManager extends SQLInterface {
     }
 
     public function get($id) {
-        $content = $this->getCondContent('public."softwares"', 
+        $content = $this->getCondContent('softwares', 
                 ['smallname' =>  strtolower($id)]
             );
             
