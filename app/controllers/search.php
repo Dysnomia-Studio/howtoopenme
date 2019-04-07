@@ -6,20 +6,31 @@
 
 $s = (isset($_GET['s']))?$_GET['s']:'';
 $s = htmlentities(htmlspecialchars($s));
-$s = str_replace("-", " ", $s); // On retire les tirets afin d'etendre la recherche
+$s = str_replace('-', ' ', $s); // On retire les tirets afin d'etendre la recherche
+$s = str_replace('%', '', $s); // On retire les % par securite
+$s = str_replace('_', '', $s); // On retire les _ par securite
 
-if(strlen($s) < 1) { // On ne lance pas de recherche si le terme est trop petit
+$forceExt = false;
+if(substr($s, 0, 1) === '.') {
+	$forceExt = true;
+	$s = substr($s, 1);
+}
+
+if(strlen($s) < 2 || strlen(str_replace(' ', '', $s)) < 2) { // On ne lance pas de recherche si le terme est trop petit
 	$pageData['pageName'] = 'index.php';
 	$pageData['cacheName'] = DIR_CACHE.'search-small-search.html';
 	$pageData['error'] = TOO_SMALL_SEARCH;
 } else {
+
 	// Get data from extensions database
 	$extMngr = new ExtensionsManager();
 	$extensions = $extMngr->search($s);
 
-	// Get data from softwares database
-	$softMngr = new SoftwaresManager();
-	$softwares = $softMngr->search($s);
+	if($forceExt === false) {
+		// Get data from softwares database
+		$softMngr = new SoftwaresManager();
+		$softwares = $softMngr->search($s);
+	}
 
 	$resultCount = count($extensions) + count($softwares);
 	if($resultCount == 0) {

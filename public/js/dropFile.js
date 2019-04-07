@@ -11,7 +11,7 @@ function dropHandler(event) {
 
 	console.debug('Extension: ' + extension);
 
-	window.location.href = "https://howtoopen.me/search?s=" + extension;
+	window.location.href = "https://howtoopen.me/search?s=." + extension;
 }
 
 let timeout = -1;
