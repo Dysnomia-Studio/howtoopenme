@@ -30,6 +30,8 @@ if(strlen($s) < 2 || strlen(str_replace(' ', '', $s)) < 2) { // On ne lance pas 
 		// Get data from softwares database
 		$softMngr = new SoftwaresManager();
 		$softwares = $softMngr->search($s);
+	} else {
+		$softwares = [];
 	}
 
 	$resultCount = count($extensions) + count($softwares);
