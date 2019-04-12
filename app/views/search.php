@@ -23,11 +23,15 @@
 		</div>
 
 		<script type="text/javascript">
-			window.addEventListener('load', () => {
+			function loadedA() {
 				if(window.getComputedStyle(document.getElementsByClassName('beforeResult')[0]).height.charAt(0) === '0') {
 					document.getElementById('disclaimerMessage').style.display = 'block';
+				} else {
+					document.getElementById('disclaimerMessage').style.display = 'none';
 				}
-			});
+			}
+			window.addEventListener('load', loadedA);
+			document.getElementsByClassName('beforeResult')[0].children[0].children[0].children[0].children[0].addEventListener('load', loadedA);
 		</script>
 	</div>
 </section>
