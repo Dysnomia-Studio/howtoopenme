@@ -30,7 +30,7 @@
 					document.getElementById('disclaimerMessage').style.display = 'none';
 				}
 			}
-			window.addEventListener('load', loadedA);
+			window.addEventListener('load', () => setTimeout(loadedA, 500));
 			document.getElementsByClassName('beforeResult')[0].children[0].children[0].children[0].children[0].addEventListener('load', loadedA);
 		</script>
 	</div>
