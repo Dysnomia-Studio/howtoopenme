@@ -17,6 +17,12 @@ define('SEARCH_PLACEHOLDER','Entrez une extension (Ex: png), un logiciel (Ex: Bl
 
 define('HOME_MSG','Trouvez facilement le logiciel pour ouvrir votre fichier !');
 
+define('ADBLOCKERS_TEXT', '			Hey toi !<br/>
+			Pourrais tu desactiver ton bloqueur de pub s\'il te plait ?<br/>
+			C\'est notre seul moyen de financer ce site et nous promettons de ne pas afficher plus d\'une publicité par page :)<br/>
+			Merci, et bonne visite !
+');
+
 define('DROP_FILE','Deposez un fichier');
 
 // Recherche

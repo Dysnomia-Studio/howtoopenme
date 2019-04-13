@@ -21,10 +21,7 @@
 		</script>
 
 		<div id="disclaimerMessage" class="disclaimerMessage">
-			Hey you !<br/>
-			Can you disable you adblocker please ?<br/>
-			This is our only way to finance this website, we promise we won't display more than one ad per page :)<br/>
-			Thanks and have fun with our tool !
+<?= ADBLOCKERS_TEXT ?>
 		</div>
 
 		<script type="text/javascript">
