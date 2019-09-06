@@ -12,6 +12,7 @@
 						<ul>
 							<li><h3>Autres sites</h3></li>
 							<li><a href="***REMOVED***" target="_blank">Dehash.me</a></li>
+							<li><a href="https://whoowns.me" target="_blank">Whoowns.me</a></li>
 							<li><a href="***REMOVED***" target="_blank">Galactae: Space Age Dawn</a></li>
 						</ul>
 					</td>
