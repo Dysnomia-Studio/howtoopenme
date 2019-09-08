@@ -16,7 +16,7 @@
 		<script type="text/javascript" src="/js/iconselect/control/iconselect.js"></script>
 		<script type="text/javascript" src="/js/iconselect/iscroll.js"></script>
 		<script type="text/javascript" src="/js/language-list.js"></script>
-	    <?php 
+	    <?php
 	    if($lang->getLanguage() == 'en') { ?>
 	    <script type="text/javascript">
 			window.addEventListener('load', function() {

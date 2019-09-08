@@ -10,19 +10,19 @@ class ExtensionsManager extends SQLInterface {
     private function searchRegex($id) {
         global $lang;
 
-        return $this->getILIKECondContent('extensions', 
+        return $this->getILIKECondContent('extensions',
                 ['ext' => preg_quote($id)]
             );
     }
 
     private function searchAlias($id) {
-        return $this->getILIKECondContent('aliases', 
+        return $this->getILIKECondContent('aliases',
                 ['alias' => preg_quote($id)]
             );
     }
 
     public function getAliases($id) {
-        return $this->getILIKECondContent('aliases', 
+        return $this->getILIKECondContent('aliases',
                 ['ext' => preg_quote($id)]
             );
     }
@@ -43,7 +43,7 @@ class ExtensionsManager extends SQLInterface {
     }
     
     public function get($id) {
-        $content = $this->getCondContent('extensions', 
+        $content = $this->getCondContent('extensions',
                 ['ext' =>  strtolower($id)]);
             
         if(count($content) == 0) { return $content; }

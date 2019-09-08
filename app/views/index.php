@@ -2,7 +2,7 @@
 	<div class="index-search">
 		<form class="search-bar" method="get" action="search">
 			<p class="index-text"><?= HOME_MSG ?></p>
-			<input type="search" name="s" placeholder="<?= SEARCH_PLACEHOLDER ?>" value="<?php if(isset($s)) echo $s; ?>">
+			<input type="search" name="s" placeholder="<?= SEARCH_PLACEHOLDER ?>" value="<?php if(isset($s)) { echo $s; } ?>">
 			<input type="submit" value="<?= SEARCH ?>">
 			<?php
 			if(isset($pageData['error'])) {
@@ -43,7 +43,9 @@
 		<h2 class="center-title"><?= TOP_EXT ?></h2>
 		<ol>
 			<?php
-			if(!is_array($extensions) || empty($extensions)) $extensions = array();
+			if(!is_array($extensions) || empty($extensions)) {
+				$extensions = array();
+			}
 
 			for($i=0; $i<min(10, count($extensions)); $i++) {
 				echo '<li><a href="https://howtoopen.me/ext/'.$extensions[$i]['ext'].'">.'.$extensions[$i]['ext'].'</a></li>';
@@ -55,7 +57,9 @@
 		<h2 class="center-title"><?= TOP_SOFT ?></h2>
 		<ol>
 			<?php
-			if(!is_array($softwares) || empty($softwares)) $softwares = array();
+			if(!is_array($softwares) || empty($softwares)) {
+				$softwares = array();
+			}
 			
 			for($i=0; $i<min(10, count($softwares)); $i++) {
 				echo '<li><a href="https://howtoopen.me/soft/'.$softwares[$i]['soft'].'">'.$softwares[$i]['name'].'</a></li>';

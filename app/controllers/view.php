@@ -21,9 +21,9 @@ if(isset($_GET['ext'])) {
     $softMngr = new SoftwaresManager();
 
     $pageData['data'] = $softMngr->get($s);
-} 
+}
 
-if(!isset($pageData['data']) || $pageData['data'] == NULL) {
+if(!isset($pageData['data']) || $pageData['data'] == null) {
     http_response_code(404);
     $pageData['pageName'] = DIR_ERRORS.'404.html';
 }
@@ -94,7 +94,5 @@ function drawStatus($value=0) {
             break;
     }
 
-    $retour .= '.svg">';
-    
-    return $retour;
+    return $retour.'.svg">';
 }

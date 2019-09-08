@@ -21,7 +21,7 @@ function percentCircle(percent,name,color) {
 	const centery = h / 2;
 
 	let total = 0;
-	for(x=0; x < datalist.length; x++) {
+	for(let x=0; x < datalist.length; x++) {
 		total += datalist[x];
 	}
 

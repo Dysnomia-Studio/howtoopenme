@@ -1,10 +1,10 @@
-<?php 
+<?php
 $debut = round(microtime(true) * 1000);
 ?>
 <!DOCTYPE html>
-<!-- 
+<!--
 	Code by Elanis
-	Copyright 2018-<?= date('Y') ?> 
+	Copyright 2018-<?= date('Y') ?>
 	Don't copy this without permission
 	I hope this code is readable.
 -->
@@ -77,7 +77,7 @@ $debut = round(microtime(true) * 1000);
 		?>
         <script type="text/javascript" src="/js/dropFile.js"></script>
         <div id="drop-overlay">
-            <img src="/img/dropFile.png">
+            <img src="/img/dropFile.png" alt="Drop file">
             <?= DROP_FILE ?>
         </div>
 	</body>

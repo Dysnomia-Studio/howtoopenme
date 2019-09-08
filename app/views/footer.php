@@ -1,7 +1,7 @@
 		<footer>
-			<table>
+			<table aria-describedby="First footer">
 				<tr class="first-footer">
-					<td>		
+					<td>
 						<ul>
 							<li><h3>HowToOpen.Me</h3></li>
 							<li><a href="https://howtoopen.me">Accueil</a></li>
@@ -20,9 +20,6 @@
 					<td>
 						<ul>
 							<li><h3>Reseaux sociaux</h3></li>
-							<!--<li><a href="redir/facebook.php">Facebook</a></li>
-							<li><a href="redir/twitter.php">Twitter</a></li>
-							<li><a href="redir/youtube.php">Youtube</a></li>-->
 							<li><a href="***REMOVED***">Discord</a></li>
 						</ul>
 					</td>
@@ -34,7 +31,7 @@
 					</td>
 				</tr>
 			</table>
-			<table>
+			<table aria-describedby="Second footer">
 				<tr class="second-footer">
 					<td>HowToOpenMe - Crée par <a href="https://dysnomia.studio/" rel="noopener noreferrer" target="_blank">Dysnomia</a><br/>
 					Copyright 2018-<?= date('Y') ?> - Tout droits reservés</td>

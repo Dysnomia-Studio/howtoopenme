@@ -55,11 +55,28 @@
 	</div>
 </section>
 <section class="corps corps-view">
+	<table aria-describedby="Compatible Softwares">
+		<tr>
+			<th scope="col" rowspan="2"><?= SOFTWARE ?></th>
+			<th scope="col" rowspan="2"></th>
+			<th scope="col" colspan="3"><?= POSSIBLE_ACTIONS ?></th>
+			<th scope="col" rowspan="2"></th>
+			<th scope="col" colspan="5"><?= OPERATING_SYSTEM ?></th>
+			<th scope="col" rowspan="2"></th>
+			<th scope="col" rowspan="2"><?= FREEWARE ?></th>
+		</tr>
 
-	<table>
-		<tr><th rowspan="2"><?= SOFTWARE ?></th><th rowspan="2"></th><th colspan="3"><?= POSSIBLE_ACTIONS ?></th><th rowspan="2"></th><th colspan="5"><?= OPERATING_SYSTEM ?><th rowspan="2"></th><th rowspan="2"><?= FREEWARE ?></th></tr>
-		<tr><th><?= IMPORT ?></th><th><?= EXPORT ?></th><th><?= EXECUTE ?></th>
-			<th>Windows</th><th>MacOS</th><th>GNU/Linux</th><th>Android</th><th>iOS</th></tr>
+		<tr>
+			<th scope="col"><?= IMPORT ?></th>
+			<th scope="col"><?= EXPORT ?></th>
+			<th scope="col"><?= EXECUTE ?></th>
+			<th scope="col">Windows</th>
+			<th scope="col">MacOS</th>
+			<th scope="col">GNU/Linux</th>
+			<th scope="col">Android</th>
+			<th scope="col">iOS</th>
+		</tr>
+		
 		<?php
 		foreach ($pageData['data']['extAndSoftList'] as $extAndSoft) {
 	
