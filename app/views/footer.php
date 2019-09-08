@@ -11,9 +11,9 @@
 					<td>
 						<ul>
 							<li><h3>Autres sites</h3></li>
-							<li><a href="***REMOVED***" target="_blank">Dehash.me</a></li>
-							<li><a href="https://whoowns.me" target="_blank">Whoowns.me</a></li>
-							<li><a href="***REMOVED***" target="_blank">Galactae: Space Age Dawn</a></li>
+							<li><a href="***REMOVED***" rel="noopener noreferrer" target="_blank">Dehash.me</a></li>
+							<li><a href="https://whoowns.me" rel="noopener noreferrer" target="_blank">Whoowns.me</a></li>
+							<li><a href="***REMOVED***" rel="noopener noreferrer" target="_blank">Galactae: Space Age Dawn</a></li>
 						</ul>
 					</td>
 
@@ -36,7 +36,7 @@
 			</table>
 			<table>
 				<tr class="second-footer">
-					<td>HowToOpenMe - Crée par <a href="https://dysnomia.studio/" target="_blank">Dysnomia</a><br/>
+					<td>HowToOpenMe - Crée par <a href="https://dysnomia.studio/" rel="noopener noreferrer" target="_blank">Dysnomia</a><br/>
 					Copyright 2018-<?= date('Y') ?> - Tout droits reservés</td>
 				</tr>
 			</table>
