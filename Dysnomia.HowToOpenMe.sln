@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dysnomia.HowToOpenMe.AdminPanel", "Dysnomia.HowToOpenMe.AdminPanel\Dysnomia.HowToOpenMe.AdminPanel.csproj", "{2E2BED05-9D58-4B29-9EF3-C363607D9439}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dysnomia.HowToOpenMe.AdminPanel", "Dysnomia.HowToOpenMe.AdminPanel\Dysnomia.HowToOpenMe.AdminPanel.csproj", "{2E2BED05-9D58-4B29-9EF3-C363607D9439}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dysnomia.HowToOpenMe.Common", "Dysnomia.HowToOpenMe.Common\Dysnomia.HowToOpenMe.Common.csproj", "{BE76BD41-3A08-4555-9979-1392CA8C0B7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dysnomia.HowToOpenMe.Business", "Dysnomia.HowToOpenMe.Business\Dysnomia.HowToOpenMe.Business.csproj", "{048AC929-CBFD-4411-B3D2-C0AB4A15FE46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{2E2BED05-9D58-4B29-9EF3-C363607D9439}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E2BED05-9D58-4B29-9EF3-C363607D9439}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E2BED05-9D58-4B29-9EF3-C363607D9439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE76BD41-3A08-4555-9979-1392CA8C0B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE76BD41-3A08-4555-9979-1392CA8C0B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE76BD41-3A08-4555-9979-1392CA8C0B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE76BD41-3A08-4555-9979-1392CA8C0B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048AC929-CBFD-4411-B3D2-C0AB4A15FE46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048AC929-CBFD-4411-B3D2-C0AB4A15FE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048AC929-CBFD-4411-B3D2-C0AB4A15FE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048AC929-CBFD-4411-B3D2-C0AB4A15FE46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

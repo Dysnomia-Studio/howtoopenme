@@ -1,0 +1,73 @@
+﻿@model Dysnomia.HowToOpenMe.Common.Models.Software
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Software</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SmallName" class="control-label"></label>
+                <input asp-for="SmallName" class="form-control" />
+                <span asp-validation-for="SmallName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Desc" class="control-label"></label>
+                <input asp-for="Desc" class="form-control" />
+                <span asp-validation-for="Desc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="URL" class="control-label"></label>
+                <input asp-for="URL" class="form-control" />
+                <span asp-validation-for="URL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Windows" class="control-label"></label>
+                <input asp-for="Windows" class="form-control" />
+                <span asp-validation-for="Windows" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MacOS" class="control-label"></label>
+                <input asp-for="MacOS" class="form-control" />
+                <span asp-validation-for="MacOS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Linux" class="control-label"></label>
+                <input asp-for="Linux" class="form-control" />
+                <span asp-validation-for="Linux" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Android" class="control-label"></label>
+                <input asp-for="Android" class="form-control" />
+                <span asp-validation-for="Android" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IOS" class="control-label"></label>
+                <input asp-for="IOS" class="form-control" />
+                <span asp-validation-for="IOS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

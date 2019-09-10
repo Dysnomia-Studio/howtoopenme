@@ -1,0 +1,42 @@
+﻿@model Dysnomia.HowToOpenMe.Common.Models.Extension
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Extension</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ext)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ext)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Desc)
+        </dt>
+        <dd>
+            @Html.Raw(Model.Desc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MIMEType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MIMEType)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Ext }) |
+    <a asp-action="Index">Back to List</a>
+</div>
