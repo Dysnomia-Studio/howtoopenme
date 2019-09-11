@@ -1,54 +1,52 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Dysnomia.HowToOpenMe.Business;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Threading.Tasks;
 
+using Dysnomia.HowToOpenMe.Business;
 using Dysnomia.HowToOpenMe.Common.Models;
 
-using Npgsql;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
 	public class SoftwaresController : Controller {
-		public IActionResult Index() {
-			return View(SoftwareDataAccess.GetAllSoftwares());
+		public async Task<IActionResult> Index() {
+			return View(await SoftwareDataAccess.GetAllSoftwares());
 		}
 
-		public IActionResult Details(string id) {
-			return View(SoftwareDataAccess.GetSoftware(id));
+		public async Task<IActionResult> Details(string id) {
+			return View(await SoftwareDataAccess.GetSoftware(id));
 		}
 
 		[HttpGet]
-		public IActionResult Edit(string id) {
-			return View(SoftwareDataAccess.GetSoftware(id));
+		public async Task<IActionResult> Edit(string id) {
+			return View(await SoftwareDataAccess.GetSoftware(id));
 		}
 
 		[HttpPost]
-		public IActionResult Edit(Software software) {
-			SoftwareDataAccess.UpdateSoftware(software);
+		public async Task<IActionResult> Edit(Software software) {
+			await SoftwareDataAccess.UpdateSoftware(software);
 
-			return View("Details", SoftwareDataAccess.GetSoftware(software.SmallName));
+			return View("Details", await SoftwareDataAccess.GetSoftware(software.SmallName));
 		}
 
-		public IActionResult Delete(string id) {
-			return View(SoftwareDataAccess.GetSoftware(id));
+		public async Task<IActionResult> Delete(string id) {
+			return View(await SoftwareDataAccess.GetSoftware(id));
 		}
 
 		[HttpPost, ActionName("Delete")]
-		public IActionResult DeletePost(string id) {
-			SoftwareDataAccess.DeleteSoftware(id);
+		public async Task<IActionResult> DeletePost(string id) {
+			await SoftwareDataAccess.DeleteSoftware(id);
 
-			return View("Index", SoftwareDataAccess.GetAllSoftwares());
+			return View("Index", await SoftwareDataAccess.GetAllSoftwares());
 		}
 
-		public IActionResult Create() {
+		public async Task<IActionResult> Create() {
 			return View();
 		}
 
 		[HttpPost]
-		public IActionResult Create(Software software) {
-			SoftwareDataAccess.CreateSoftware(software);
+		public async Task<IActionResult> Create(Software software) {
+			await SoftwareDataAccess.CreateSoftware(software);
 
-			return View("Details", SoftwareDataAccess.GetSoftware(software.SmallName));
+			return View("Details", await SoftwareDataAccess.GetSoftware(software.SmallName));
 		}
 	}
 }

@@ -1,119 +1,89 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 
+using Dysnomia.HowToOpenMe.Common;
 using Dysnomia.HowToOpenMe.Common.Models;
 
 using Npgsql;
 
-namespace Dysnomia.HowToOpenMe.Business
-{
-    public class ExtensionDataAccess {
-		public static Extension MapFromReader(NpgsqlDataReader reader) {
+namespace Dysnomia.HowToOpenMe.Business {
+	public class ExtensionDataAccess {
+		public static string connectionString = "***REMOVED***";
+
+		public static Extension MapFromReader(IDataReader reader) {
 			var ext = new Extension() {
-				Ext = reader.GetString(reader.GetOrdinal("ext")),
-				Name = reader.GetString(reader.GetOrdinal("name")),
+				Ext = SQLHelper.GetStringFromReader(reader, "ext"),
+				Name = SQLHelper.GetStringFromReader(reader, "name"),
+				Desc = SQLHelper.GetStringFromReader(reader, "desc"),
+				MIMEType = SQLHelper.GetStringFromReader(reader, "MIMEType"),
 			};
-
-			if (!reader.IsDBNull(reader.GetOrdinal("desc"))) {
-				ext.Desc = reader.GetString(reader.GetOrdinal("desc"));
-			}
-
-			if (!reader.IsDBNull(reader.GetOrdinal("MIMEType"))) {
-				ext.MIMEType = reader.GetString(reader.GetOrdinal("MIMEType"));
-			}
 
 			return ext;
 		}
 
-		public static List<Extension> MapListFromReader(NpgsqlDataReader reader) {
+		public static Extension MapFromBlankReader(IDataReader reader) {
+			reader.Read();
+
+			return MapFromReader(reader);
+		}
+
+		public static List<Extension> MapListFromReader(IDataReader reader) {
 			List<Extension> extensions = new List<Extension>();
 
 			while (reader.Read()) {
 				extensions.Add(MapFromReader(reader));
 			}
 
+			extensions.Sort((a, b) => {
+				return a.Ext.CompareTo(b.Ext);
+			});
+
 			return extensions;
 		}
 
-		public static List<Extension> GetAllExtensions() {
-			using (NpgsqlConnection connection =
-					new NpgsqlConnection("***REMOVED***")) {
-
-				NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM extensions", connection);
-				command.Connection.Open();
-
-				using (NpgsqlDataReader reader = command.ExecuteReader()) {
-					var extensions = MapListFromReader(reader);
-					extensions.Sort((a, b) => {
-						return a.Ext.CompareTo(b.Ext);
-					});
-
-					return extensions;
-				}
+		public static async Task<List<Extension>> GetAllExtensions() {
+			using (var connection = new NpgsqlConnection(connectionString)) {
+				return MapListFromReader(await SQLHelper.ExecSelect(connection, "SELECT * FROM extensions"));
 			}
 		}
 
-		public static Extension GetExtension(string ext) {
-			using (NpgsqlConnection connection =
-					new NpgsqlConnection("***REMOVED***")) {
-
-				using (NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM extensions WHERE ext = @extension", connection)) {
-
-					command.Parameters.AddWithValue("extension", ext);
-					command.Connection.Open();
-
-					using (NpgsqlDataReader reader = command.ExecuteReader()) {
-						return MapListFromReader(reader).FirstOrDefault();
-					}
-				}
+		public static async Task<Extension> GetExtension(string ext) {
+			using (var connection = new NpgsqlConnection(connectionString)) {
+				return MapFromBlankReader(await SQLHelper.ExecSelect(connection, "SELECT * FROM extensions WHERE ext = @extension", new Dictionary<string, object>() {
+					{ "extension", ext }
+				}));
 			}
 		}
 
-		public static void CreateExtension(Extension ext) {
-			using (NpgsqlConnection connection =
-					new NpgsqlConnection("***REMOVED***")) {
-
-				using (NpgsqlCommand command = new NpgsqlCommand("INSERT INTO public.extensions(ext, name, \"desc\", \"MIMEType\") VALUES(@ext, @name, @description, @MIMEType)", connection)) {
-
-					command.Parameters.AddWithValue("ext", ext.Ext);
-					command.Parameters.AddWithValue("name", ext.Name);
-					command.Parameters.AddWithValue("description", ext.Desc ?? "");
-					command.Parameters.AddWithValue("MIMEType", ext.MIMEType ?? "");
-					command.Connection.Open();
-
-					command.ExecuteNonQuery();
-				}
+		public static async Task CreateExtension(Extension ext) {
+			using (var connection = new NpgsqlConnection(connectionString)) {
+				await SQLHelper.Exec(connection, "INSERT INTO public.extensions(ext, name, \"desc\", \"MIMEType\") VALUES(@ext, @name, @description, @MIMEType)", new Dictionary<string, object>() {
+					{ "ext", ext.Ext },
+					{ "name", ext.Name },
+					{ "description", ext.Desc ?? "" },
+					{ "MIMEType", ext.MIMEType ?? "" }
+				});
 			}
 		}
 
-		public static void UpdateExtension(Extension ext) {
-			using (NpgsqlConnection connection =
-					new NpgsqlConnection("***REMOVED***")) {
-
-				using (NpgsqlCommand command = new NpgsqlCommand("UPDATE public.extensions SET name=@name, \"desc\"=@description, \"MIMEType\"=@MIMEType WHERE ext=@extension", connection)) {
-
-					command.Parameters.AddWithValue("extension", ext.Ext);
-					command.Parameters.AddWithValue("name", ext.Name);
-					command.Parameters.AddWithValue("description", ext.Desc);
-					command.Parameters.AddWithValue("MIMEType", ext.MIMEType);
-					command.Connection.Open();
-
-					command.ExecuteNonQuery();
-				}
+		public static async Task UpdateExtension(Extension ext) {
+			using (var connection = new NpgsqlConnection(connectionString)) {
+				await SQLHelper.Exec(connection, "UPDATE public.extensions SET name=@name, \"desc\"=@description, \"MIMEType\"=@MIMEType WHERE ext=@extension", new Dictionary<string, object>() {
+					{ "extension", ext.Ext },
+					{ "name", ext.Name },
+					{ "description", ext.Desc ?? "" },
+					{ "MIMEType", ext.MIMEType ?? "" }
+				});
 			}
 		}
 
-		public static void DeleteExtension(string ext) {
-			using (NpgsqlConnection connection =
-					new NpgsqlConnection("***REMOVED***")) {
-
-				using (NpgsqlCommand command = new NpgsqlCommand("DELETE FROM public.extensions WHERE ext=@extension", connection)) {
-
-					command.Parameters.AddWithValue("extension", ext);
-					command.Connection.Open();
-
-					command.ExecuteNonQuery();
-				}
+		public static async Task DeleteExtension(string ext) {
+			using (var connection = new NpgsqlConnection(connectionString)) {
+				await SQLHelper.Exec(connection, "DELETE FROM public.extensions WHERE ext=@extension", new Dictionary<string, object>() {
+					{ "extension", ext }
+				});
 			}
 		}
 	}

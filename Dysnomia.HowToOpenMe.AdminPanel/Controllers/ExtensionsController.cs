@@ -1,43 +1,41 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Dysnomia.HowToOpenMe.Business;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Threading.Tasks;
 
+using Dysnomia.HowToOpenMe.Business;
 using Dysnomia.HowToOpenMe.Common.Models;
 
-using Npgsql;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
 	public class ExtensionsController : Controller {
-		public IActionResult Index() {
-			return View(ExtensionDataAccess.GetAllExtensions());
+		public async Task<IActionResult> Index() {
+			return View(await ExtensionDataAccess.GetAllExtensions());
 		}
 
-		public IActionResult Details(string id) {
-			return View(ExtensionDataAccess.GetExtension(id));
+		public async Task<IActionResult> Details(string id) {
+			return View(await ExtensionDataAccess.GetExtension(id));
 		}
 
 		[HttpGet]
-		public IActionResult Edit(string id) {
-			return View(ExtensionDataAccess.GetExtension(id));
+		public async Task<IActionResult> Edit(string id) {
+			return View(await ExtensionDataAccess.GetExtension(id));
 		}
 
 		[HttpPost]
-		public IActionResult Edit(Extension extension) {
-			ExtensionDataAccess.UpdateExtension(extension);
+		public async Task<IActionResult> Edit(Extension extension) {
+			await ExtensionDataAccess.UpdateExtension(extension);
 
-			return View("Details", ExtensionDataAccess.GetExtension(extension.Ext));
+			return View("Details", await ExtensionDataAccess.GetExtension(extension.Ext));
 		}
 
-		public IActionResult Delete(string id) {
-			return View(ExtensionDataAccess.GetExtension(id));
+		public async Task<IActionResult> Delete(string id) {
+			return View(await ExtensionDataAccess.GetExtension(id));
 		}
 
 		[HttpPost, ActionName("Delete")]
-		public IActionResult DeletePost(string id) {
-			ExtensionDataAccess.DeleteExtension(id);
+		public async Task<IActionResult> DeletePost(string id) {
+			await ExtensionDataAccess.DeleteExtension(id);
 
-			return View("Index", ExtensionDataAccess.GetAllExtensions());
+			return View("Index", await ExtensionDataAccess.GetAllExtensions());
 		}
 
 		public IActionResult Create() {
@@ -45,10 +43,10 @@ namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
 		}
 
 		[HttpPost]
-		public IActionResult Create(Extension extension) {
-			ExtensionDataAccess.CreateExtension(extension);
+		public async Task<IActionResult> Create(Extension extension) {
+			await ExtensionDataAccess.CreateExtension(extension);
 
-			return View("Details", ExtensionDataAccess.GetExtension(extension.Ext));
+			return View("Details", await ExtensionDataAccess.GetExtension(extension.Ext));
 		}
 	}
 }
