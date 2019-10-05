@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 
 using Dysnomia.HowToOpenMe.Common;
@@ -13,6 +12,7 @@ namespace Dysnomia.HowToOpenMe.Business {
 		public static string connectionString = "***REMOVED***";
 
 		public static Extension MapFromReader(IDataReader reader) {
+
 			var ext = new Extension() {
 				Ext = SQLHelper.GetStringFromReader(reader, "ext"),
 				Name = SQLHelper.GetStringFromReader(reader, "name"),

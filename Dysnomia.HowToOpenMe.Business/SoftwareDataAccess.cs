@@ -1,16 +1,15 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
+
 
 using Dysnomia.HowToOpenMe.Common;
 using Dysnomia.HowToOpenMe.Common.Models;
 
 using Npgsql;
 
-namespace Dysnomia.HowToOpenMe.Business
-{
-    public class SoftwareDataAccess {
+namespace Dysnomia.HowToOpenMe.Business {
+	public class SoftwareDataAccess {
 		public static string connectionString = "***REMOVED***";
 
 		public static Software MapFromReader(IDataReader reader) {

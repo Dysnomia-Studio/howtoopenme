@@ -38,7 +38,7 @@ namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
 			return View("Index", await SoftwareDataAccess.GetAllSoftwares());
 		}
 
-		public async Task<IActionResult> Create() {
+		public IActionResult Create() {
 			return View();
 		}
 

@@ -5,7 +5,7 @@ using Dysnomia.HowToOpenMe.AdminPanel.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
-	public class HomeController:Controller {
+	public class HomeController : Controller {
 		public IActionResult Index() {
 			return View();
 		}
