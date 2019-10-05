@@ -1,7 +1,8 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
+using Dysnomia.Common.SQL;
 
 using Dysnomia.HowToOpenMe.Common;
 using Dysnomia.HowToOpenMe.Common.Models;
@@ -14,16 +15,16 @@ namespace Dysnomia.HowToOpenMe.Business {
 
 		public static Software MapFromReader(IDataReader reader) {
 			var ext = new Software() {
-				SmallName = SQLHelper.GetStringFromReader(reader, "smallname"),
-				Name = SQLHelper.GetStringFromReader(reader, "name"),
-				Desc = SQLHelper.GetStringFromReader(reader, "desc"),
-				URL = SQLHelper.GetStringFromReader(reader, "URL"),
+				SmallName = DbReaderMapper.GetString(reader, "smallname"),
+				Name = DbReaderMapper.GetString(reader, "name"),
+				Desc = DbReaderMapper.GetString(reader, "desc"),
+				URL = DbReaderMapper.GetString(reader, "URL"),
 
-				Windows = SQLHelper.GetInt32FromReader(reader, "Windows"),
-				MacOS = SQLHelper.GetInt32FromReader(reader, "MacOS"),
-				Linux = SQLHelper.GetInt32FromReader(reader, "Linux"),
-				Android = SQLHelper.GetInt32FromReader(reader, "Android"),
-				IOS = SQLHelper.GetInt32FromReader(reader, "IOS"),
+				Windows = DbReaderMapper.GetInt32(reader, "Windows"),
+				MacOS = DbReaderMapper.GetInt32(reader, "MacOS"),
+				Linux = DbReaderMapper.GetInt32(reader, "Linux"),
+				Android = DbReaderMapper.GetInt32(reader, "Android"),
+				IOS = DbReaderMapper.GetInt32(reader, "IOS"),
 			};
 
 			return ext;

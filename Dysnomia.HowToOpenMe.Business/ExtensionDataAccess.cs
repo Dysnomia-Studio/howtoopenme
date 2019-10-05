@@ -1,6 +1,8 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+
+using Dysnomia.Common.SQL;
 
 using Dysnomia.HowToOpenMe.Common;
 using Dysnomia.HowToOpenMe.Common.Models;
@@ -14,10 +16,10 @@ namespace Dysnomia.HowToOpenMe.Business {
 		public static Extension MapFromReader(IDataReader reader) {
 
 			var ext = new Extension() {
-				Ext = SQLHelper.GetStringFromReader(reader, "ext"),
-				Name = SQLHelper.GetStringFromReader(reader, "name"),
-				Desc = SQLHelper.GetStringFromReader(reader, "desc"),
-				MIMEType = SQLHelper.GetStringFromReader(reader, "MIMEType"),
+				Ext = DbReaderMapper.GetString(reader, "ext"),
+				Name = DbReaderMapper.GetString(reader, "name"),
+				Desc = DbReaderMapper.GetString(reader, "desc"),
+				MIMEType = DbReaderMapper.GetString(reader, "MIMEType"),
 			};
 
 			return ext;
