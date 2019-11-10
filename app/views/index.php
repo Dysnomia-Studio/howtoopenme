@@ -43,7 +43,7 @@
 		<h2 class="center-title"><?= TOP_EXT ?></h2>
 		<ol>
 			<?php
-			if(!is_array($extensions) || empty($extensions)) {
+			if(!isset($extensions) || !is_array($extensions)) {
 				$extensions = array();
 			}
 
@@ -57,7 +57,7 @@
 		<h2 class="center-title"><?= TOP_SOFT ?></h2>
 		<ol>
 			<?php
-			if(!is_array($softwares) || empty($softwares)) {
+			if(!isset($softwares) || !is_array($softwares)) {
 				$softwares = array();
 			}
 			
