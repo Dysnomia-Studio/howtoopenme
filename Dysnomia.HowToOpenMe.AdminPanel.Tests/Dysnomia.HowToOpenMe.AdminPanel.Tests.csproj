@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Dysnomia.HowToOpenMe.Adminpanel\Dysnomia.HowToOpenMe.Adminpanel.csproj" />
+    <ProjectReference Include="..\Dysnomia.HowToOpenMe.AdminPanel\Dysnomia.HowToOpenMe.AdminPanel.csproj" />
   </ItemGroup>
 
 </Project>
