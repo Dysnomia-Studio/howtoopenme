@@ -15,16 +15,16 @@ namespace Dysnomia.HowToOpenMe.Business {
 
 		public static Software MapFromReader(IDataReader reader) {
 			var ext = new Software() {
-				SmallName = DbReaderMapper.GetString(reader, "smallname"),
-				Name = DbReaderMapper.GetString(reader, "name"),
-				Desc = DbReaderMapper.GetString(reader, "desc"),
-				URL = DbReaderMapper.GetString(reader, "URL"),
+				SmallName = reader.GetString("smallname"),
+				Name = reader.GetString("name"),
+				Desc = reader.GetString("desc"),
+				URL = reader.GetString("URL"),
 
-				Windows = DbReaderMapper.GetInt32(reader, "Windows"),
-				MacOS = DbReaderMapper.GetInt32(reader, "MacOS"),
-				Linux = DbReaderMapper.GetInt32(reader, "Linux"),
-				Android = DbReaderMapper.GetInt32(reader, "Android"),
-				IOS = DbReaderMapper.GetInt32(reader, "IOS"),
+				Windows = reader.GetInt32("Windows"),
+				MacOS = reader.GetInt32("MacOS"),
+				Linux = reader.GetInt32("Linux"),
+				Android = reader.GetInt32("Android"),
+				IOS = reader.GetInt32("IOS"),
 			};
 
 			return ext;

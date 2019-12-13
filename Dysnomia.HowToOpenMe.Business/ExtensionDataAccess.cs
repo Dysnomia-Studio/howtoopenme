@@ -16,10 +16,10 @@ namespace Dysnomia.HowToOpenMe.Business {
 		public static Extension MapFromReader(IDataReader reader) {
 
 			var ext = new Extension() {
-				Ext = DbReaderMapper.GetString(reader, "ext"),
-				Name = DbReaderMapper.GetString(reader, "name"),
-				Desc = DbReaderMapper.GetString(reader, "desc"),
-				MIMEType = DbReaderMapper.GetString(reader, "MIMEType"),
+				Ext = reader.GetString("ext"),
+				Name = reader.GetString("name"),
+				Desc = reader.GetString("desc"),
+				MIMEType = reader.GetString("MIMEType"),
 			};
 
 			return ext;
