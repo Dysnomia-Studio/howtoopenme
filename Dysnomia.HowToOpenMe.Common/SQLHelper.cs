@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Npgsql;
 
 namespace Dysnomia.HowToOpenMe.Common {
-	public class SQLHelper {
+	public static class SQLHelper {
 		public static void BindParameters(NpgsqlParameterCollection parameters, Dictionary<string, object> parametersData) {
 			if (parametersData != null) {
 				foreach (KeyValuePair<string, object> kvp in parametersData) {
@@ -14,7 +14,7 @@ namespace Dysnomia.HowToOpenMe.Common {
 			}
 		}
 
-		public async static Task<IDataReader> ExecStoredProcedure<T>(NpgsqlConnection connection, string procName, Dictionary<string, object> parameters = null) {
+		public async static Task<IDataReader> ExecStoredProcedure(NpgsqlConnection connection, string procName, Dictionary<string, object> parameters = null) {
 			var command = connection.CreateCommand();
 			command.CommandType = CommandType.StoredProcedure;
 			command.CommandText = procName;
