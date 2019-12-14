@@ -60,13 +60,13 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 		public async Task<List<Software>> GetAllSoftwares() {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			return MapListFromReader(await SQLHelper.ExecSelect(connection, "SELECT * FROM softwares"));
+			return MapListFromReader(await DbHelper.ExecuteQuery(connection, "SELECT * FROM softwares"));
 		}
 
 		public async Task<Software> GetSoftware(string smallname) {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			return MapFromBlankReader(await SQLHelper.ExecSelect(connection, "SELECT * FROM softwares WHERE smallname = @smallname", new Dictionary<string, object>() {
+			return MapFromBlankReader(await DbHelper.ExecuteQuery(connection, "SELECT * FROM softwares WHERE smallname = @smallname", new Dictionary<string, object>() {
 				{ "smallname", smallname }
 			}));
 		}
@@ -74,7 +74,7 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 		public async Task CreateSoftware(Software soft) {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			await SQLHelper.Exec(connection, "INSERT INTO public.Softwares(smallname, name, \"desc\", url, windows, macos, linux, android, ios) VALUES(@smallname, @name, @description, @url, @windows, @macos, @linux, @android, @ios)", new Dictionary<string, object>() {
+			await DbHelper.ExecuteNonQuery(connection, "INSERT INTO public.Softwares(smallname, name, \"desc\", url, windows, macos, linux, android, ios) VALUES(@smallname, @name, @description, @url, @windows, @macos, @linux, @android, @ios)", new Dictionary<string, object>() {
 				{ "smallname", soft.SmallName },
 				{ "name", soft.Name },
 				{ "description", soft.Desc ?? "" },
@@ -90,7 +90,7 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 		public async Task UpdateSoftware(Software soft) {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			await SQLHelper.Exec(connection, "UPDATE public.softwares SET name=@name, \"desc\"=@description, url=@url, windows=@windows, macos=@macos, linux=@linux, android=@android, ios=@ios WHERE smallname=@smallname", new Dictionary<string, object>() {
+			await DbHelper.ExecuteNonQuery(connection, "UPDATE public.softwares SET name=@name, \"desc\"=@description, url=@url, windows=@windows, macos=@macos, linux=@linux, android=@android, ios=@ios WHERE smallname=@smallname", new Dictionary<string, object>() {
 				{ "smallname", soft.SmallName },
 				{ "name", soft.Name },
 				{ "description", soft.Desc ?? "" },
@@ -106,7 +106,7 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 		public async Task DeleteSoftware(string smallname) {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			await SQLHelper.Exec(connection, "DELETE FROM public.softwares WHERE smallname=@smallname", new Dictionary<string, object>() {
+			await DbHelper.ExecuteNonQuery(connection, "DELETE FROM public.softwares WHERE smallname=@smallname", new Dictionary<string, object>() {
 				{ "smallname", smallname }
 			});
 		}

@@ -54,13 +54,13 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 		public async Task<List<Extension>> GetAllExtensions() {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			return MapListFromReader(await SQLHelper.ExecSelect(connection, "SELECT * FROM extensions"));
+			return MapListFromReader(await DbHelper.ExecuteQuery(connection, "SELECT * FROM extensions"));
 		}
 
 		public async Task<Extension> GetExtension(string ext) {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			return MapFromBlankReader(await SQLHelper.ExecSelect(connection, "SELECT * FROM extensions WHERE ext = @extension", new Dictionary<string, object>() {
+			return MapFromBlankReader(await DbHelper.ExecuteQuery(connection, "SELECT * FROM extensions WHERE ext = @extension", new Dictionary<string, object>() {
 				{ "extension", ext }
 			}));
 		}
@@ -68,7 +68,7 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 		public async Task CreateExtension(Extension ext) {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			await SQLHelper.Exec(connection, "INSERT INTO public.extensions(ext, name, \"desc\", \"MIMEType\") VALUES(@ext, @name, @description, @MIMEType)", new Dictionary<string, object>() {
+			await DbHelper.ExecuteNonQuery(connection, "INSERT INTO public.extensions(ext, name, \"desc\", \"MIMEType\") VALUES(@ext, @name, @description, @MIMEType)", new Dictionary<string, object>() {
 				{ "ext", ext.Ext },
 				{ "name", ext.Name },
 				{ "description", ext.Desc ?? "" },
@@ -79,7 +79,7 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 		public async Task UpdateExtension(Extension ext) {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			await SQLHelper.Exec(connection, "UPDATE public.extensions SET name=@name, \"desc\"=@description, \"MIMEType\"=@MIMEType WHERE ext=@extension", new Dictionary<string, object>() {
+			await DbHelper.ExecuteNonQuery(connection, "UPDATE public.extensions SET name=@name, \"desc\"=@description, \"MIMEType\"=@MIMEType WHERE ext=@extension", new Dictionary<string, object>() {
 				{ "extension", ext.Ext },
 				{ "name", ext.Name },
 				{ "description", ext.Desc ?? "" },
@@ -90,7 +90,7 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 		public async Task DeleteExtension(string ext) {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			await SQLHelper.Exec(connection, "DELETE FROM public.extensions WHERE ext=@extension", new Dictionary<string, object>() {
+			await DbHelper.ExecuteNonQuery(connection, "DELETE FROM public.extensions WHERE ext=@extension", new Dictionary<string, object>() {
 				{ "extension", ext }
 			});
 		}

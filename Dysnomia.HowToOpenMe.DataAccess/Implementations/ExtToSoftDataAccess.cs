@@ -60,7 +60,7 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 			using var connection = new NpgsqlConnection(connectionString);
 
 			return MapListFromReader(
-				await SQLHelper.ExecSelect(
+				await DbHelper.ExecuteQuery(
 					connection,
 					"SELECT \"extAndSoft\".ext as \"ExtensionId\", \"extAndSoft\".soft as \"SoftwareId\", \"extAndSoft\".\"extName\", \"extAndSoft\".\"use\", \"extAndSoft\".\"free\" FROM \"extAndSoft\""
 				)
