@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
 	public class ExtensionsController : Controller {
-		private IExtensionService extensionService;
+		private readonly IExtensionService extensionService;
 
 		public ExtensionsController(IExtensionService extensionService) {
 			this.extensionService = extensionService;

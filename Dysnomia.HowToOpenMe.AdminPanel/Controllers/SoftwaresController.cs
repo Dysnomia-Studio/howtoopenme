@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
 	public class SoftwaresController : Controller {
-		private ISoftwareService softwareService;
+		private readonly ISoftwareService softwareService;
 
 		public SoftwaresController(ISoftwareService softwareService) {
 			this.softwareService = softwareService;

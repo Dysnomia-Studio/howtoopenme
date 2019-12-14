@@ -4,9 +4,14 @@ function dropHandler(event) {
 	console.debug('File(s) dropped');
 	console.debug(event.dataTransfer.files);
 
-	if(event.dataTransfer.files.length < 1) { return; }
+	if(event.dataTransfer.files.length < 1) {
+		return;
+	}
+
 	let extension = event.dataTransfer.files[0].name.split('.');
-	if(extension.length < 1) { return; }
+	if(extension.length < 1) {
+		return;
+	}
 	extension = extension[extension.length - 1];
 
 	console.debug('Extension: ' + extension);

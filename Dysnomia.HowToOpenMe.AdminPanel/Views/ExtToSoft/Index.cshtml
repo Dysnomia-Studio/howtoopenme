@@ -9,25 +9,25 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" aria-describedby="Extensions-Softwares links list">
     <thead>
         <tr>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.ExtensionId)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.ExtName)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.SoftwareId)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Use)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Free)
             </th>
-            <th></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>

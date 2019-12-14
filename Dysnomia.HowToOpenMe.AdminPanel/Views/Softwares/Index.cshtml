@@ -9,75 +9,75 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" aria-describedby="Softwares list">
     <thead>
         <tr>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.SmallName)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Desc)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.URL)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Windows)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.MacOS)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Linux)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Android)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.IOS)
             </th>
-            <th></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SmallName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.Raw(item.Desc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.URL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Windows)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MacOS)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Linux)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Android)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IOS)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.SmallName }) |
-                @Html.ActionLink("Details", "Details", new { id = item.SmallName }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.SmallName })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SmallName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.Raw(item.Desc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.URL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Windows)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MacOS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Linux)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Android)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IOS)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SmallName }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SmallName }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SmallName })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -1,53 +1,53 @@
 ﻿@model IEnumerable<Dysnomia.HowToOpenMe.Common.Models.Extension>
 
 @{
-	ViewData["Title"] = "ExtensionsList";
+    ViewData["Title"] = "ExtensionsList";
 }
 
 <h2>ExtensionsList</h2>
 
 <p>
-	<a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.Ext)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Name)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Desc)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.MIMEType)
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model) {
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.Ext)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Name)
-				</td>
+<table class="table" aria-describedby="Extensions list">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Ext)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Desc)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.MIMEType)
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ext)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
                 <td>
                     @Html.Raw(item.Desc)
                 </td>
                 <td>
-					@Html.DisplayFor(modelItem => item.MIMEType)
-				</td>
-				<td>
-					@Html.ActionLink("Edit", "Edit", new { id = item.Ext }) |
-					@Html.ActionLink("Details", "Details", new { id = item.Ext }) |
-					@Html.ActionLink("Delete", "Delete", new { id = item.Ext })
-				</td>
-			</tr>
-		}
-	</tbody>
+                    @Html.DisplayFor(modelItem => item.MIMEType)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Ext }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Ext }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Ext })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

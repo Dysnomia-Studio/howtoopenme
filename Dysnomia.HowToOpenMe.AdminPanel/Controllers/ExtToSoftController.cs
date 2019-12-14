@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
 	public class ExtToSoftController : Controller {
-		private IExtToSoftService extToSoftService;
+		private readonly IExtToSoftService extToSoftService;
 
 		public ExtToSoftController(IExtToSoftService extToSoftService) {
 			this.extToSoftService = extToSoftService;
