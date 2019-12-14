@@ -6,12 +6,19 @@ using Dysnomia.Common.SQL;
 
 using Dysnomia.HowToOpenMe.Common;
 using Dysnomia.HowToOpenMe.Common.Models;
+using Dysnomia.HowToOpenMe.DataAccess.Interfaces;
+
+using Microsoft.Extensions.Options;
 
 using Npgsql;
 
-namespace Dysnomia.HowToOpenMe.Business {
-	public class SoftwareDataAccess {
-		public static string connectionString = "***REMOVED***";
+namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
+	public class SoftwareDataAccess : ISoftwareDataAccess {
+		private readonly string connectionString;
+
+		public SoftwareDataAccess(IOptions<AppSettings> appSettings) {
+			connectionString = appSettings.Value.ConnectionString;
+		}
 
 		public static Software MapFromReader(IDataReader reader) {
 			var ext = new Software {
@@ -50,13 +57,13 @@ namespace Dysnomia.HowToOpenMe.Business {
 			return extensions;
 		}
 
-		public static async Task<List<Software>> GetAllSoftwares() {
+		public async Task<List<Software>> GetAllSoftwares() {
 			using var connection = new NpgsqlConnection(connectionString);
 
 			return MapListFromReader(await SQLHelper.ExecSelect(connection, "SELECT * FROM softwares"));
 		}
 
-		public static async Task<Software> GetSoftware(string smallname) {
+		public async Task<Software> GetSoftware(string smallname) {
 			using var connection = new NpgsqlConnection(connectionString);
 
 			return MapFromBlankReader(await SQLHelper.ExecSelect(connection, "SELECT * FROM softwares WHERE smallname = @smallname", new Dictionary<string, object>() {
@@ -64,7 +71,7 @@ namespace Dysnomia.HowToOpenMe.Business {
 			}));
 		}
 
-		public static async Task CreateSoftware(Software soft) {
+		public async Task CreateSoftware(Software soft) {
 			using var connection = new NpgsqlConnection(connectionString);
 
 			await SQLHelper.Exec(connection, "INSERT INTO public.Softwares(smallname, name, \"desc\", url, windows, macos, linux, android, ios) VALUES(@smallname, @name, @description, @url, @windows, @macos, @linux, @android, @ios)", new Dictionary<string, object>() {
@@ -80,7 +87,7 @@ namespace Dysnomia.HowToOpenMe.Business {
 			});
 		}
 
-		public static async Task UpdateSoftware(Software soft) {
+		public async Task UpdateSoftware(Software soft) {
 			using var connection = new NpgsqlConnection(connectionString);
 
 			await SQLHelper.Exec(connection, "UPDATE public.softwares SET name=@name, \"desc\"=@description, url=@url, windows=@windows, macos=@macos, linux=@linux, android=@android, ios=@ios WHERE smallname=@smallname", new Dictionary<string, object>() {
@@ -96,7 +103,7 @@ namespace Dysnomia.HowToOpenMe.Business {
 			});
 		}
 
-		public static async Task DeleteSoftware(string smallname) {
+		public async Task DeleteSoftware(string smallname) {
 			using var connection = new NpgsqlConnection(connectionString);
 
 			await SQLHelper.Exec(connection, "DELETE FROM public.softwares WHERE smallname=@smallname", new Dictionary<string, object>() {

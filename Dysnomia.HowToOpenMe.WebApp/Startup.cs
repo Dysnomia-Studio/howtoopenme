@@ -1,4 +1,8 @@
+using Dysnomia.HowToOpenMe.Business.Implementations;
+using Dysnomia.HowToOpenMe.Business.Interfaces;
 using Dysnomia.HowToOpenMe.Common;
+using Dysnomia.HowToOpenMe.DataAccess.Implementations;
+using Dysnomia.HowToOpenMe.DataAccess.Interfaces;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +22,14 @@ namespace Dysnomia.HowToOpenMe.WebApp {
 		public void ConfigureServices(IServiceCollection services) {
 			var appSettingsSection = Configuration.GetSection("AppSettings");
 			services.Configure<AppSettings>(appSettingsSection);
+
+			services.AddTransient<IExtensionDataAccess, ExtensionDataAccess>();
+			services.AddTransient<IExtToSoftDataAccess, ExtToSoftDataAccess>();
+			services.AddTransient<ISoftwareDataAccess, SoftwareDataAccess>();
+
+			services.AddTransient<ISoftwareService, SoftwareService>();
+			services.AddTransient<IExtensionService, ExtensionService>();
+			services.AddTransient<IExtToSoftService, ExtToSoftService>();
 
 			services.AddControllersWithViews();
 			services.AddDistributedMemoryCache();

@@ -6,12 +6,19 @@ using Dysnomia.Common.SQL;
 
 using Dysnomia.HowToOpenMe.Common;
 using Dysnomia.HowToOpenMe.Common.Models;
+using Dysnomia.HowToOpenMe.DataAccess.Interfaces;
+
+using Microsoft.Extensions.Options;
 
 using Npgsql;
 
-namespace Dysnomia.HowToOpenMe.Business {
-	public class ExtToSoftDataAccess {
-		public static string connectionString = "***REMOVED***";
+namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
+	public class ExtToSoftDataAccess : IExtToSoftDataAccess {
+		private readonly string connectionString;
+
+		public ExtToSoftDataAccess(IOptions<AppSettings> appSettings) {
+			connectionString = appSettings.Value.ConnectionString;
+		}
 
 		public static ExtToSoft MapFromReader(IDataReader reader) {
 			var extToSoft = new ExtToSoft {
@@ -49,7 +56,7 @@ namespace Dysnomia.HowToOpenMe.Business {
 			return extToSoftList;
 		}
 
-		public static async Task<List<ExtToSoft>> GetAll() {
+		public async Task<List<ExtToSoft>> GetAll() {
 			using var connection = new NpgsqlConnection(connectionString);
 
 			return MapListFromReader(

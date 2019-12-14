@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Dysnomia.HowToOpenMe.Business\Dysnomia.HowToOpenMe.Business.csproj" />
     <ProjectReference Include="..\Dysnomia.HowToOpenMe.Common\Dysnomia.HowToOpenMe.Common.csproj" />
+    <ProjectReference Include="..\Dysnomia.HowToOpenMe.DataAccess\Dysnomia.HowToOpenMe.DataAccess.csproj" />
   </ItemGroup>
 
 

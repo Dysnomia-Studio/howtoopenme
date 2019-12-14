@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dysnomia.HowToOpenMe.Common
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dysnomia.HowToOpenMe.Business", "Dysnomia.HowToOpenMe.Business\Dysnomia.HowToOpenMe.Business.csproj", "{048AC929-CBFD-4411-B3D2-C0AB4A15FE46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dysnomia.HowToOpenMe.WebApp", "Dysnomia.HowToOpenMe.WebApp\Dysnomia.HowToOpenMe.WebApp.csproj", "{873649EF-93B5-4156-AB74-6DF665B47951}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dysnomia.HowToOpenMe.WebApp", "Dysnomia.HowToOpenMe.WebApp\Dysnomia.HowToOpenMe.WebApp.csproj", "{873649EF-93B5-4156-AB74-6DF665B47951}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dysnomia.HowToOpenMe.WebApp.Tests", "Dysnomia.HowToOpenMe.WebApp.Tests\Dysnomia.HowToOpenMe.WebApp.Tests.csproj", "{ECD8DF5F-6614-4950-8E47-D21BCECFBB37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dysnomia.HowToOpenMe.WebApp.Tests", "Dysnomia.HowToOpenMe.WebApp.Tests\Dysnomia.HowToOpenMe.WebApp.Tests.csproj", "{ECD8DF5F-6614-4950-8E47-D21BCECFBB37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dysnomia.HowToOpenMe.AdminPanel.Tests", "Dysnomia.HowToOpenMe.AdminPanel.Tests\Dysnomia.HowToOpenMe.AdminPanel.Tests.csproj", "{32003EC6-97A4-47EA-BC92-3C7CD60D3166}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dysnomia.HowToOpenMe.AdminPanel.Tests", "Dysnomia.HowToOpenMe.AdminPanel.Tests\Dysnomia.HowToOpenMe.AdminPanel.Tests.csproj", "{32003EC6-97A4-47EA-BC92-3C7CD60D3166}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dysnomia.HowToOpenMe.DataAccess", "Dysnomia.HowToOpenMe.DataAccess\Dysnomia.HowToOpenMe.DataAccess.csproj", "{60C0E4BE-F683-4487-9721-47ED02147087}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{32003EC6-97A4-47EA-BC92-3C7CD60D3166}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32003EC6-97A4-47EA-BC92-3C7CD60D3166}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32003EC6-97A4-47EA-BC92-3C7CD60D3166}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60C0E4BE-F683-4487-9721-47ED02147087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60C0E4BE-F683-4487-9721-47ED02147087}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60C0E4BE-F683-4487-9721-47ED02147087}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60C0E4BE-F683-4487-9721-47ED02147087}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

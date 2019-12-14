@@ -3,17 +3,23 @@ using System.Data;
 using System.Threading.Tasks;
 
 using Dysnomia.Common.SQL;
-
 using Dysnomia.HowToOpenMe.Common;
 using Dysnomia.HowToOpenMe.Common.Models;
+using Dysnomia.HowToOpenMe.DataAccess.Interfaces;
+
+using Microsoft.Extensions.Options;
 
 using Npgsql;
 
-namespace Dysnomia.HowToOpenMe.Business {
-	public class ExtensionDataAccess {
-		public static string connectionString = "***REMOVED***";
+namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
+	public class ExtensionDataAccess : IExtensionDataAccess {
+		private readonly string connectionString;
 
-		public static Extension MapFromReader(IDataReader reader) {
+		public ExtensionDataAccess(IOptions<AppSettings> appSettings) {
+			connectionString = appSettings.Value.ConnectionString;
+		}
+
+		public Extension MapFromReader(IDataReader reader) {
 
 			var ext = new Extension {
 				Ext = reader.GetString("ext"),
@@ -25,13 +31,13 @@ namespace Dysnomia.HowToOpenMe.Business {
 			return ext;
 		}
 
-		public static Extension MapFromBlankReader(IDataReader reader) {
+		public Extension MapFromBlankReader(IDataReader reader) {
 			reader.Read();
 
 			return MapFromReader(reader);
 		}
 
-		public static List<Extension> MapListFromReader(IDataReader reader) {
+		public List<Extension> MapListFromReader(IDataReader reader) {
 			List<Extension> extensions = new List<Extension>();
 
 			while (reader.Read()) {
@@ -45,13 +51,13 @@ namespace Dysnomia.HowToOpenMe.Business {
 			return extensions;
 		}
 
-		public static async Task<List<Extension>> GetAllExtensions() {
+		public async Task<List<Extension>> GetAllExtensions() {
 			using var connection = new NpgsqlConnection(connectionString);
 
 			return MapListFromReader(await SQLHelper.ExecSelect(connection, "SELECT * FROM extensions"));
 		}
 
-		public static async Task<Extension> GetExtension(string ext) {
+		public async Task<Extension> GetExtension(string ext) {
 			using var connection = new NpgsqlConnection(connectionString);
 
 			return MapFromBlankReader(await SQLHelper.ExecSelect(connection, "SELECT * FROM extensions WHERE ext = @extension", new Dictionary<string, object>() {
@@ -59,7 +65,7 @@ namespace Dysnomia.HowToOpenMe.Business {
 			}));
 		}
 
-		public static async Task CreateExtension(Extension ext) {
+		public async Task CreateExtension(Extension ext) {
 			using var connection = new NpgsqlConnection(connectionString);
 
 			await SQLHelper.Exec(connection, "INSERT INTO public.extensions(ext, name, \"desc\", \"MIMEType\") VALUES(@ext, @name, @description, @MIMEType)", new Dictionary<string, object>() {
@@ -70,7 +76,7 @@ namespace Dysnomia.HowToOpenMe.Business {
 			});
 		}
 
-		public static async Task UpdateExtension(Extension ext) {
+		public async Task UpdateExtension(Extension ext) {
 			using var connection = new NpgsqlConnection(connectionString);
 
 			await SQLHelper.Exec(connection, "UPDATE public.extensions SET name=@name, \"desc\"=@description, \"MIMEType\"=@MIMEType WHERE ext=@extension", new Dictionary<string, object>() {
@@ -81,7 +87,7 @@ namespace Dysnomia.HowToOpenMe.Business {
 			});
 		}
 
-		public static async Task DeleteExtension(string ext) {
+		public async Task DeleteExtension(string ext) {
 			using var connection = new NpgsqlConnection(connectionString);
 
 			await SQLHelper.Exec(connection, "DELETE FROM public.extensions WHERE ext=@extension", new Dictionary<string, object>() {
