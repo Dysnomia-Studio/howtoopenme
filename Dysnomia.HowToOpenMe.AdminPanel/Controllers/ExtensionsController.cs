@@ -52,7 +52,7 @@ namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
 		public async Task<IActionResult> Create(Extension extension) {
 			await extensionService.CreateExtension(extension);
 
-			return View("Details", await ExtensionDataAccess.GetExtension(extension.Ext));
+			return View("Details", await extensionService.GetExtension(extension.Ext));
 		}
 	}
 }
