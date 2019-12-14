@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Dysnomia.HowToOpenMe.Common.Models.ExtToSoft>
+
+@{
+    ViewData["Title"] = "ExtToSoftList";
+}
+
+<h2>ExtensionsList</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ExtensionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExtName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoftwareId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Use)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Free)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExtensionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExtName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoftwareId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Use)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Free)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ExtensionId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ExtensionId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ExtensionId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
