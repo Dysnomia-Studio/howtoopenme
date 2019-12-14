@@ -15,7 +15,7 @@ namespace Dysnomia.HowToOpenMe.Business {
 
 		public static Extension MapFromReader(IDataReader reader) {
 
-			var ext = new Extension() {
+			var ext = new Extension {
 				Ext = reader.GetString("ext"),
 				Name = reader.GetString("name"),
 				Desc = reader.GetString("desc"),

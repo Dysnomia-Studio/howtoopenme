@@ -14,7 +14,7 @@ namespace Dysnomia.HowToOpenMe.Business {
 		public static string connectionString = "***REMOVED***";
 
 		public static Software MapFromReader(IDataReader reader) {
-			var ext = new Software() {
+			var ext = new Software {
 				SmallName = reader.GetString("smallname"),
 				Name = reader.GetString("name"),
 				Desc = reader.GetString("desc"),

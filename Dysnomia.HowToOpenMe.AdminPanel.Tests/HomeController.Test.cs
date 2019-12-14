@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 
 using Xunit;
 
-
 namespace Dysnomia.HowToOpenMe.AdminPanel.Tests {
 	public class HomeController {
 		public HttpClient client { get; }
@@ -34,6 +33,13 @@ namespace Dysnomia.HowToOpenMe.AdminPanel.Tests {
 			var response = await client.GetAsync("/");
 
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
+		}
+
+		[Fact]
+		public async void ShouldGet404_GET_Foo() {
+			var response = await client.GetAsync("/foo");
+
+			response.StatusCode.Should().Be(HttpStatusCode.NotFound);
 		}
 	}
 }
