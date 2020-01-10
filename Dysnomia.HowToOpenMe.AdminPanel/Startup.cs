@@ -23,13 +23,16 @@ namespace Dysnomia.HowToOpenMe.AdminPanel {
 			var appSettingsSection = Configuration.GetSection("AppSettings");
 			services.Configure<AppSettings>(appSettingsSection);
 
+			services.AddTransient<IAliasDataAccess, AliasDataAccess>();
 			services.AddTransient<IExtensionDataAccess, ExtensionDataAccess>();
 			services.AddTransient<IExtToSoftDataAccess, ExtToSoftDataAccess>();
 			services.AddTransient<ISoftwareDataAccess, SoftwareDataAccess>();
 
-			services.AddTransient<ISoftwareService, SoftwareService>();
+
+			services.AddTransient<IAliasService, AliasService>();
 			services.AddTransient<IExtensionService, ExtensionService>();
 			services.AddTransient<IExtToSoftService, ExtToSoftService>();
+			services.AddTransient<ISoftwareService, SoftwareService>();
 
 			services.AddControllersWithViews();
 			services.AddDistributedMemoryCache();
