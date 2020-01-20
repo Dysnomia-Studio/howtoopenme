@@ -36,20 +36,6 @@ namespace Dysnomia.HowToOpenMe.AdminPanel.Tests {
 		}
 
 		[Fact]
-		public async void ShouldGet500_GET_Details_Empty() {
-			var response = await client.GetAsync("/Alias/Details");
-
-			response.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
-		}
-
-		[Fact]
-		public async void ShouldGet200_GET_Details() {
-			var response = await client.GetAsync("/Alias/Details/1");
-
-			response.StatusCode.Should().Be(HttpStatusCode.OK);
-		}
-
-		[Fact]
 		public async void ShouldGet200_GET_Create() {
 			var response = await client.GetAsync("/Alias/Create");
 
@@ -57,22 +43,6 @@ namespace Dysnomia.HowToOpenMe.AdminPanel.Tests {
 		}
 
 		// TODO: POST /Create
-
-		[Fact]
-		public async void ShouldGet500_GET_Edit_Empty() {
-			var response = await client.GetAsync("/Alias/Edit");
-
-			response.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
-		}
-
-		[Fact]
-		public async void ShouldGet200_GET_Edit() {
-			var response = await client.GetAsync("/Alias/Edit/1");
-
-			response.StatusCode.Should().Be(HttpStatusCode.OK);
-		}
-
-		// TODO: POST /Edit
 
 		[Fact]
 		public async void ShouldGet500_GET_Delete_Empty() {
