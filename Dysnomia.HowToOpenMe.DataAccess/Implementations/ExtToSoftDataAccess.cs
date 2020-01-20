@@ -66,5 +66,35 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 				)
 			);
 		}
+
+		public async Task<ExtToSoft> Get(string ext, string extName, string software) {
+			using var connection = new NpgsqlConnection(connectionString);
+
+			return MapFromBlankReader(await DbHelper.ExecuteQuery(connection, "SELECT \"extAndSoft\".ext as \"ExtensionId\", \"extAndSoft\".soft as \"SoftwareId\", \"extAndSoft\".\"extName\", \"extAndSoft\".\"use\", \"extAndSoft\".\"free\" FROM \"extAndSoft\" WHERE ext = @ext AND \"extName\"=@extName AND soft = @software", new Dictionary<string, object>() {
+				{ "ext", ext },
+				{ "extName", extName },
+				{ "software", software }
+			}));
+		}
+		public async Task Create(ExtToSoft extToSoft) {
+			using var connection = new NpgsqlConnection(connectionString);
+
+			await DbHelper.ExecuteNonQuery(connection, "INSERT INTO \"extAndSoft\"(ext, soft, use, free, \"extName\") VALUES(@ext, @soft, @use, @free, @extName)", new Dictionary<string, object>() {
+				{ "ext", extToSoft.ExtensionId },
+				{ "soft", extToSoft.SoftwareId },
+				{ "use", extToSoft.Use },
+				{ "free", extToSoft.Free },
+				{ "extName", extToSoft.ExtName }
+			});
+		}
+		public async Task Delete(string ext, string extName, string software) {
+			using var connection = new NpgsqlConnection(connectionString);
+
+			await DbHelper.ExecuteNonQuery(connection, "DELETE FROM \"extAndSoft\" WHERE ext = @ext AND \"extName\"=@extName AND soft = @software", new Dictionary<string, object>() {
+				{ "ext", ext },
+				{ "extName", extName },
+				{ "software", software }
+			});
+		}
 	}
 }

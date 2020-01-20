@@ -21,11 +21,6 @@ namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
 			return View(await aliasService.GetAllAliases());
 		}
 
-		// GET: Alias/Details/5
-		public async Task<IActionResult> Details(int id) {
-			return View(await aliasService.GetAlias(id));
-		}
-
 		// GET: Alias/Create
 		public async Task<IActionResult> Create() {
 			@ViewData["extensions"] = new SelectList(
@@ -48,20 +43,6 @@ namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
 			await aliasService.CreateAlias(alias);
 
 			return View("Index", await aliasService.GetAllAliases());
-		}
-
-		// GET: Alias/Edit/5
-		public async Task<IActionResult> Edit(int id) {
-			return View(await aliasService.GetAlias(id));
-		}
-
-		// POST: Alias/Edit/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(Alias alias) {
-			await aliasService.UpdateAlias(alias);
-
-			return View("Details", await aliasService.GetAlias(alias.Id));
 		}
 
 		// GET: Alias/Delete/5

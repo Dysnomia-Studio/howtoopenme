@@ -49,9 +49,9 @@
                     @Html.DisplayFor(modelItem => item.Free)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ExtensionId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ExtensionId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ExtensionId })
+                    @Html.ActionLink("Edit", "Edit", new { ext = item.ExtensionId, extName = item.ExtName, software = item.SoftwareId }) |
+                    @Html.ActionLink("Details", "Details", new { ext = item.ExtensionId, extName = item.ExtName, software = item.SoftwareId }) |
+                    @Html.ActionLink("Delete", "Delete", new { ext = item.ExtensionId, extName = item.ExtName, software = item.SoftwareId })
                 </td>
             </tr>
         }

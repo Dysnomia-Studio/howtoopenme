@@ -15,5 +15,14 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 		public async Task<List<ExtToSoft>> GetAll() {
 			return await extToSoftDataAccess.GetAll();
 		}
+		public async Task<ExtToSoft> Get(string ext, string extName, string software) {
+			return await extToSoftDataAccess.Get(ext, extName, software);
+		}
+		public async Task Create(ExtToSoft extToSoft) {
+			await extToSoftDataAccess.Create(extToSoft);
+		}
+		public async Task Delete(string ext, string extName, string software) {
+			await extToSoftDataAccess.Delete(ext, extName, software);
+		}
 	}
 }
