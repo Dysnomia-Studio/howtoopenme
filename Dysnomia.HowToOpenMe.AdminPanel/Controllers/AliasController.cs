@@ -4,13 +4,16 @@ using Dysnomia.HowToOpenMe.Business.Interfaces;
 using Dysnomia.HowToOpenMe.Common.Models;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
 	public class AliasController : Controller {
 		private readonly IAliasService aliasService;
+		private readonly IExtensionService extensionService;
 
-		public AliasController(IAliasService aliasService) {
+		public AliasController(IAliasService aliasService, IExtensionService extensionService) {
 			this.aliasService = aliasService;
+			this.extensionService = extensionService;
 		}
 
 		// GET: Alias
@@ -24,7 +27,17 @@ namespace Dysnomia.HowToOpenMe.AdminPanel.Controllers {
 		}
 
 		// GET: Alias/Create
-		public IActionResult Create() {
+		public async Task<IActionResult> Create() {
+			@ViewData["extensions"] = new SelectList(
+				await extensionService.GetAllExtensions(),
+				nameof(Extension.Ext), nameof(Extension.Ext)
+			);
+
+			@ViewData["extensionsName"] = new SelectList(
+				await extensionService.GetAllExtensions(),
+				nameof(Extension.Name), nameof(Extension.Name)
+			);
+
 			return View();
 		}
 
