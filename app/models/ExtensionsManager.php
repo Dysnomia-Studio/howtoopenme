@@ -22,8 +22,8 @@ class ExtensionsManager extends SQLInterface {
     }
 
     public function getAliases($id) {
-        return $this->getILIKECondContent('aliases',
-                ['ext' => preg_quote($id)]
+        return $this->getCondContent('aliases',
+                ['ext' => strtolower($id)]
             );
     }
 
