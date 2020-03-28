@@ -110,5 +110,29 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 				{ "smallname", smallname }
 			});
 		}
+
+		public async Task<List<Software>> Search(string searchText) {
+			using var connection = new NpgsqlConnection(connectionString);
+
+			var reader = await DbHelper.ExecuteQuery(connection, "SELECT * FROM softwares WHERE smallname ILIKE @searchText OR name ILIKE @searchText", new Dictionary<string, object>() {
+				{ "searchText", "%" + searchText + "%" },
+			});
+
+			return MapListFromReader(reader);
+		}
+
+		public async Task<List<Software>> GetTopSoftwares() {
+			using var connection = new NpgsqlConnection(connectionString);
+
+			var reader = await DbHelper.ExecuteQuery(connection, "SELECT *  FROM (SELECT SUM(\"viewCount\") as somme, soft FROM public.\"softViews\" WHERE \"date\" >= current_date - interval '30 days' GROUP BY soft ORDER BY somme DESC LIMIT 10) top INNER JOIN softwares ON softwares.smallname = top.soft");
+
+			return MapListFromReader(reader);
+		}
+
+		public async Task AddView(string name) {
+			using var connection = new NpgsqlConnection(connectionString);
+
+			await DbHelper.ExecuteNonQuery(connection, "INSERT INTO public.\"softViews\"(soft, \"date\", \"viewCount\") VALUES (:soft, :currDate, 1) ON CONFLICT (soft, \"date\") DO UPDATE SET \"viewCount\" = public.\"softViews\".\"viewCount\" + 1;");
+		}
 	}
 }

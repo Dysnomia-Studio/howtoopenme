@@ -94,5 +94,29 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 				{ "extension", ext }
 			});
 		}
+
+		public async Task<List<Extension>> Search(string searchText) {
+			using var connection = new NpgsqlConnection(connectionString);
+
+			var reader = await DbHelper.ExecuteQuery(connection, "SELECT * FROM extensions WHERE ext ILIKE @searchText OR name ILIKE @searchText", new Dictionary<string, object>() {
+				{ "searchText", "%" + searchText + "%" },
+			});
+
+			return MapListFromReader(reader);
+		}
+
+		public async Task<List<Extension>> GetTopExtensions() {
+			using var connection = new NpgsqlConnection(connectionString);
+
+			var reader = await DbHelper.ExecuteQuery(connection, "SELECT *  FROM (SELECT SUM(\"viewCount\") as somme, ext FROM public.\"extViews\" WHERE \"date\" >= current_date - interval '30 days' GROUP BY ext ORDER BY somme DESC LIMIT 10) top INNER JOIN extensions ON extensions.smallname = top.ext");
+
+			return MapListFromReader(reader);
+		}
+
+		public async Task AddView(string name) {
+			using var connection = new NpgsqlConnection(connectionString);
+
+			await DbHelper.ExecuteNonQuery(connection, "INSERT INTO public.\"extViews\"(ext, \"date\", \"viewCount\") VALUES (@name, current_date, 1) ON CONFLICT (ext, \"date\") DO UPDATE SET \"viewCount\" = public.\"extViews\".\"viewCount\" + 1;");
+		}
 	}
 }

@@ -10,5 +10,10 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Interfaces {
 		Task CreateSoftware(Software soft);
 		Task UpdateSoftware(Software soft);
 		Task DeleteSoftware(string smallname);
+
+		Task<List<Software>> GetTopSoftwares();
+		Task AddView(string name);
+
+		Task<List<Software>> Search(string searchText);
 	}
 }

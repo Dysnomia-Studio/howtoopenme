@@ -10,5 +10,10 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Interfaces {
 		Task CreateExtension(Extension ext);
 		Task UpdateExtension(Extension ext);
 		Task DeleteExtension(string ext);
+
+		Task<List<Extension>> GetTopExtensions();
+		Task AddView(string name);
+
+		Task<List<Extension>> Search(string searchText);
 	}
 }

@@ -10,5 +10,8 @@ namespace Dysnomia.HowToOpenMe.Business.Interfaces {
 		Task CreateSoftware(Software soft);
 		Task UpdateSoftware(Software soft);
 		Task DeleteSoftware(string smallname);
+
+		Task<List<Software>> GetTopSoftwares();
+		Task AddView(string name);
 	}
 }
