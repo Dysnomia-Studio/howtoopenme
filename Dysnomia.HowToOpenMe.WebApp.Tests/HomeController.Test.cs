@@ -35,5 +35,67 @@ namespace Dysnomia.HowToOpenMe.WebApp.Tests {
 
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
 		}
+
+		[Fact]
+		public async void ShouldGet200_GET_Search_Not_Exists() {
+			var response = await client.GetAsync("/search/test");
+
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+			// @TODO: check redirected to index
+		}
+
+		[Fact]
+		public async void ShouldGet200_GET_Search_Exists() {
+			var response = await client.GetAsync("/search/png");
+
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+		}
+
+		[Fact]
+		public async void ShouldGet200_GET_Search_Exists_Partial() {
+			var response = await client.GetAsync("/search/pn");
+
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+		}
+
+		[Fact]
+		public async void ShouldGet200_GET_Ext_Not_Exists() {
+			var response = await client.GetAsync("/ext/test");
+
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+			// @TODO: check redirected to index
+		}
+
+		[Fact]
+		public async void ShouldGet200_GET_Ext_Exists() {
+			var response = await client.GetAsync("/ext/png");
+
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+		}
+
+		[Fact]
+		public async void ShouldGet200_GET_Soft_Not_Exists() {
+			var response = await client.GetAsync("/soft/test");
+
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+			// @TODO: check redirected to index
+		}
+
+		[Fact]
+		public async void ShouldGet200_GET_Soft_Exists() {
+			var response = await client.GetAsync("/soft/png");
+
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+		}
+
+		[Fact]
+		public async void ShouldGet200_GET_Not_Exists() {
+			var response = await client.GetAsync("/test");
+
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+		}
 	}
 }

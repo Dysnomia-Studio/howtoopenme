@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
 using Dysnomia.Common.Security;
 using Dysnomia.HowToOpenMe.Business.Interfaces;
-using Dysnomia.HowToOpenMe.WebApp.Models;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -97,7 +95,7 @@ namespace Dysnomia.HowToOpenMe.WebApp.Controllers {
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error() {
-			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+			return View();
 		}
 	}
 }
