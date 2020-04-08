@@ -3,7 +3,7 @@
         ().RequestCulture.Culture.TwoLetterISOLanguageName;
 }
 <!DOCTYPE html>
-<html lang="$lang->getLanguage()">
+<html lang="@culture">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +16,7 @@
     <nav class="menu">
         <span class="menu-title"><a href="/">HowToOpen.me</a></span>
 
-        @if (ViewContext.RouteData.Values["controller"].ToString() != "Home") {
+        @if (ViewContext.RouteData.Values["action"].ToString() != "Index") {
             <form class="search-bar" method="get" action="/search">
                 <input type="search" name="s" placeholder="@Localizer["SEARCH_PLACEHOLDER"]">
                 <input type="submit" value="@Localizer["SEARCH"]">

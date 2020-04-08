@@ -8,7 +8,7 @@ using Dysnomia.HowToOpenMe.Business.Interfaces;
 using Dysnomia.HowToOpenMe.Common;
 using Dysnomia.HowToOpenMe.DataAccess.Implementations;
 using Dysnomia.HowToOpenMe.DataAccess.Interfaces;
-using Dysnomia.Website.WebApp.Controllers;
+using Dysnomia.HowToOpenMe.WebApp.Controllers;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,10 +43,6 @@ namespace Dysnomia.HowToOpenMe.WebApp {
 			services.AddTransient<IExtToSoftService, ExtToSoftService>();
 			services.AddTransient<ISearchService, SearchService>();
 			services.AddTransient<ISoftwareService, SoftwareService>();
-
-
-			services.AddControllersWithViews();
-			services.AddDistributedMemoryCache();
 
 			services.AddControllersWithViews();
 			services.AddMemoryCache();
@@ -98,7 +94,19 @@ namespace Dysnomia.HowToOpenMe.WebApp {
 			app.UseSession();
 			app.UseCookiePolicy();
 
-			if (!env.IsEnvironment("Testing")) {
+			if (env.IsEnvironment("Testing")) {
+				app.Use(async (context, next) => {
+					if (!context.Request.Query.ContainsKey("bot") || context.Request.Query["bot"] != "true") {
+						context.Session.SetString("Ip", "?");
+
+						var date = DateTime.Now;
+						date.AddSeconds(-5);
+						context.Session.SetString("Time", date.ToLongDateString() + " " + date.ToLongTimeString());
+					}
+
+					await next();
+				});
+			} else {
 				app.Use(async (context, next) => {
 					StatsRecorder.NewVisit(context);
 

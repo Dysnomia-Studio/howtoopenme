@@ -7,7 +7,6 @@ window.addEventListener('load', () => {
 	const selectedText = document.getElementById('selected-language');
 
 	// Chargement de la liste des drapeaux
-	// Chargement de la liste des drapeaux
 	const icons = [];
 	icons.push({ 'iconFilePath': 'https://03.cdn.elanis.eu/website/img/flags/fr.png', 'iconValue': 'fr' });
 	icons.push({ 'iconFilePath': 'https://03.cdn.elanis.eu/website/img/flags/en.png', 'iconValue': 'en' });

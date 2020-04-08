@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 
-namespace Dysnomia.Website.WebApp.Controllers {
+namespace Dysnomia.HowToOpenMe.WebApp.Controllers {
 	public class UrlRequestCultureProvider : IRequestCultureProvider {
 		public Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext) {
 			var url = httpContext.Request.Path;
