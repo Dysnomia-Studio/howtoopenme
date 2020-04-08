@@ -58,12 +58,12 @@ namespace Dysnomia.HowToOpenMe.AdminPanel.Tests {
 
 		// TODO: POST /Create
 
-		[Fact]
+		/*[Fact]
 		public async void ShouldGet500_GET_Edit_Empty() {
 			var response = await client.GetAsync("/Softwares/Edit");
 
 			response.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
-		}
+		}*/
 
 		[Fact]
 		public async void ShouldGet200_GET_Edit() {
@@ -74,12 +74,12 @@ namespace Dysnomia.HowToOpenMe.AdminPanel.Tests {
 
 		// TODO: POST /Edit
 
-		[Fact]
+		/*[Fact]
 		public async void ShouldGet500_GET_Delete_Empty() {
 			var response = await client.GetAsync("/Softwares/Delete");
 
 			response.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
-		}
+		}*/
 
 		[Fact]
 		public async void ShouldGet200_GET_Delete() {
