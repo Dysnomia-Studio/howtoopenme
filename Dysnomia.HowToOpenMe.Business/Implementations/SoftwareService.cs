@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Dysnomia.HowToOpenMe.Business.Interfaces;
@@ -9,9 +10,11 @@ using Dysnomia.HowToOpenMe.DataAccess.Interfaces;
 namespace Dysnomia.HowToOpenMe.Business.Implementations {
 	public class SoftwareService : ISoftwareService {
 		private readonly ISoftwareDataAccess softwareDataAccess;
+		private readonly IExtToSoftDataAccess extToSoftDataAccess;
 
-		public SoftwareService(ISoftwareDataAccess softwareDataAccess) {
+		public SoftwareService(ISoftwareDataAccess softwareDataAccess, IExtToSoftDataAccess extToSoftDataAccess) {
 			this.softwareDataAccess = softwareDataAccess;
+			this.extToSoftDataAccess = extToSoftDataAccess;
 		}
 
 		public async Task<List<Software>> GetAllSoftwares() {
@@ -27,7 +30,13 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 
 		public async Task<Software> GetSoftware(string smallname) {
 			try {
-				return await softwareDataAccess.GetSoftware(smallname);
+				var software = await softwareDataAccess.GetSoftware(smallname);
+
+				software.ExtToSoft = (await extToSoftDataAccess.GetAll())
+					.Where((ExtToSoft extToSoft) => extToSoft.SoftwareId == software.SmallName)
+					.ToList();
+
+				return software;
 			} catch (Exception e) {
 				Console.WriteLine(e.Message);
 				Console.WriteLine(e.StackTrace);

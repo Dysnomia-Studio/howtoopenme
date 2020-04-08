@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Dysnomia.HowToOpenMe.Business.Interfaces;
@@ -9,9 +10,13 @@ using Dysnomia.HowToOpenMe.DataAccess.Interfaces;
 namespace Dysnomia.HowToOpenMe.Business.Implementations {
 	public class ExtensionService : IExtensionService {
 		private readonly IExtensionDataAccess extensionDataAccess;
+		private readonly IAliasDataAccess aliasDataAccess;
+		private readonly IExtToSoftDataAccess extToSoftDataAccess;
 
-		public ExtensionService(IExtensionDataAccess extensionDataAccess) {
+		public ExtensionService(IExtensionDataAccess extensionDataAccess, IAliasDataAccess aliasDataAccess, IExtToSoftDataAccess extToSoftDataAccess) {
 			this.extensionDataAccess = extensionDataAccess;
+			this.aliasDataAccess = aliasDataAccess;
+			this.extToSoftDataAccess = extToSoftDataAccess;
 		}
 
 		public async Task<List<Extension>> GetAllExtensions() {
@@ -27,7 +32,16 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 
 		public async Task<Extension> GetExtension(string ext) {
 			try {
-				return await extensionDataAccess.GetExtension(ext);
+				var extension = await extensionDataAccess.GetExtension(ext);
+				extension.Alias = (await aliasDataAccess.GetAllAliases())
+					.Where((Alias alias) => alias.Ext == extension.Ext && alias.ExtName == extension.Name)
+					.Select((elt) => "." + elt.ExtName)
+					.ToList();
+				extension.ExtToSoft = (await extToSoftDataAccess.GetAll())
+					.Where((ExtToSoft extToSoft) => extToSoft.ExtensionId == extension.Ext && extToSoft.ExtName == extension.Name)
+					.ToList();
+
+				return extension;
 			} catch (Exception e) {
 				Console.WriteLine(e.Message);
 				Console.WriteLine(e.StackTrace);

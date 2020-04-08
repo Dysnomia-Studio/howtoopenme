@@ -1,0 +1,28 @@
+﻿<section class="corps corps-ad">
+    <div class="beforeResult">
+        <div id="disclaimerMessage" class="disclaimerMessage">@Localizer["ADBLOCKERS_TEXT"]</div>
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Howtoopen.me - Responsive -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="***REMOVED***"
+             data-ad-slot="***REMOVED***"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <script type="text/javascript">
+            function loadedA() {
+                if (window.getComputedStyle(document.getElementsByClassName('beforeResult')[0]).height.charAt(0) === '0') {
+                    document.getElementById('disclaimerMessage').style.display = 'block';
+                } else {
+                    document.getElementById('disclaimerMessage').style.display = 'none';
+                }
+            }
+            window.addEventListener('load', () => setTimeout(loadedA, 500));
+            document.getElementsByClassName('beforeResult')[0].children[0].children[0].children[0].children[0].addEventListener('load', loadedA);
+        </script>
+    </div>
+</section>

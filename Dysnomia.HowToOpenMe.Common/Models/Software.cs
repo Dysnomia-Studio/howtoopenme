@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Dysnomia.HowToOpenMe.Common.Models {
 	public class Software {
@@ -15,5 +16,8 @@ namespace Dysnomia.HowToOpenMe.Common.Models {
 		public int Linux { get; set; }
 		public int Android { get; set; }
 		public int IOS { get; set; }
+
+		public List<ExtToSoft> ExtToSoft { get; set; }
 	}
 }
+

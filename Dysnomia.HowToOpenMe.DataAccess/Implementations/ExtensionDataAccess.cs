@@ -108,7 +108,7 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 		public async Task<List<Extension>> GetTopExtensions() {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			var reader = await DbHelper.ExecuteQuery(connection, "SELECT *  FROM (SELECT SUM(\"viewCount\") as somme, ext FROM public.\"extViews\" WHERE \"date\" >= current_date - interval '30 days' GROUP BY ext ORDER BY somme DESC LIMIT 10) top INNER JOIN extensions ON extensions.smallname = top.ext");
+			var reader = await DbHelper.ExecuteQuery(connection, "SELECT *  FROM (SELECT SUM(\"viewCount\") as somme, ext FROM public.\"extViews\" WHERE \"date\" >= current_date - interval '30 days' GROUP BY ext ORDER BY somme DESC LIMIT 10) top INNER JOIN extensions ON extensions.ext = top.ext");
 
 			return MapListFromReader(reader);
 		}

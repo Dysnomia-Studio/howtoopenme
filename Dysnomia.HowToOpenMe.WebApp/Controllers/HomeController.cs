@@ -23,9 +23,9 @@ namespace Dysnomia.HowToOpenMe.WebApp.Controllers {
 
 		[HttpGet]
 		[Route("/")]
-		[Route("{culture}/")]
-		[Route("index")]
-		[Route("{culture}/index")]
+		[Route("/{culture}/")]
+		[Route("/index")]
+		[Route("/{culture}/index")]
 		public async Task<IActionResult> Index() {
 			BotHelper.SetSessionsVars(HttpContext);
 
@@ -37,7 +37,7 @@ namespace Dysnomia.HowToOpenMe.WebApp.Controllers {
 
 		[HttpGet]
 		[Route("/search/{searchText}")]
-		[Route("{culture}/search/{searchText}")]
+		[Route("/{culture}/search/{searchText}")]
 		public async Task<IActionResult> Search(string searchText) {
 			IDictionary<string, string> result = null;
 			ViewData["SearchText"] = searchText;
@@ -62,8 +62,8 @@ namespace Dysnomia.HowToOpenMe.WebApp.Controllers {
 		}
 
 		[HttpGet]
-		[Route("/ext/{searchText}")]
-		[Route("{culture}/ext/{searchText}")]
+		[Route("/ext/{name}")]
+		[Route("/{culture}/ext/{name}")]
 		public async Task<IActionResult> Ext(string name) {
 			var result = await extensionService.GetExtension(name);
 			ViewData["Result"] = result;
@@ -79,8 +79,8 @@ namespace Dysnomia.HowToOpenMe.WebApp.Controllers {
 		}
 
 		[HttpGet]
-		[Route("/soft/{searchText}")]
-		[Route("{culture}/soft/{searchText}")]
+		[Route("/soft/{name}")]
+		[Route("/{culture}/soft/{name}")]
 		public async Task<IActionResult> Soft(string name) {
 			var result = await softwareService.GetSoftware(name);
 			ViewData["Result"] = result;

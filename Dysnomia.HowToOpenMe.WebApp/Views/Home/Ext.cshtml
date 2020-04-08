@@ -1,0 +1,93 @@
+﻿@using Dysnomia.HowToOpenMe.Common.Models;
+@using Microsoft.AspNetCore.Html;
+@{
+    ViewData["Title"] = "Search";
+    var result = (Extension)ViewData["Result"];
+
+    IHtmlContent drawStatus(int value = 0) {
+        string retour = "<img src=\"/img/";
+
+        switch (value) {
+            case 0:
+                retour += "no";
+                break;
+            case 1:
+                retour += "tick";
+                break;
+            case 2:
+                retour += "warning";
+                break;
+        }
+
+        return Html.Raw(retour + ".svg\">");
+    }
+
+    IHtmlContent drawStatusFromBool(bool value = false) {
+        if (value) {
+            return drawStatus(1);
+        } else {
+            return drawStatus(0);
+        }
+    }
+
+    var culture = Context.Features.Get<IRequestCultureFeature>
+        ().RequestCulture.Culture.TwoLetterISOLanguageName;
+}
+<section class="corps center-corps corps-view">
+    <h1 class="view-title1">@result.Ext</h1>
+    <p class="view-title2">@result.Name</p>
+    @if (!string.IsNullOrWhiteSpace(result.MIMEType)) {
+        <p class="view-title2 mimietype">
+            <u>MIME:</u> @result.MIMEType
+        </p>
+    }
+
+    @if (result.Alias.Count > 0) {
+        <p>@Localizer["ALIASES"]: @String.Join(", ", result.Alias.ToArray())</p>
+    }
+</section>
+
+<partial name="_Ad" />
+
+<section class="corps corps-view">
+    <table aria-describedby="Compatible Softwares">
+        <tr>
+            <th scope="col" rowspan="2">@Localizer["SOFTWARE"]</th>
+            <th scope="col" rowspan="2"></th>
+            <th scope="col" colspan="3">@Localizer["POSSIBLE_ACTIONS"]</th>
+            <th scope="col" rowspan="2"></th>
+            <th scope="col" colspan="5">@Localizer["OPERATING_SYSTEM"]</th>
+            <th scope="col" rowspan="2"></th>
+            <th scope="col" rowspan="2">@Localizer["FREEWARE"]</th>
+        </tr>
+
+        <tr>
+            <th scope="col">@Localizer["IMPORT"]</th>
+            <th scope="col">@Localizer["EXPORT"]</th>
+            <th scope="col">@Localizer["EXECUTE"]</th>
+            <th scope="col">Windows</th>
+            <th scope="col">MacOS</th>
+            <th scope="col">GNU/Linux</th>
+            <th scope="col">Android</th>
+            <th scope="col">iOS</th>
+        </tr>
+
+        @foreach (var extToSoft in result.ExtToSoft) {
+            <tr>
+                <td><a href="/@culture/soft/@extToSoft.SoftwareId">@extToSoft.SoftwareName</a></td>
+                <td></td>
+                <td>@drawStatusFromBool(extToSoft.Import)</td>
+                <td>@drawStatusFromBool(extToSoft.Export)</td>
+                <td>@drawStatusFromBool(extToSoft.Exec)</td>
+                <td></td>
+                <td>@drawStatus(extToSoft.Windows)</td>
+                <td>@drawStatus(extToSoft.MacOS)</td>
+                <td>@drawStatus(extToSoft.Linux)</td>
+                <td>@drawStatus(extToSoft.Android)</td>
+                <td>@drawStatus(extToSoft.Ios)</td>
+                <td></td>
+                <td>@drawStatus(@extToSoft.Free)</td>
+            </tr>
+        }
+    </table>
+</section>

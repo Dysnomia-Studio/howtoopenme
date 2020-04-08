@@ -1,48 +1,89 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@{
+    var culture = Context.Features.Get<IRequestCultureFeature>
+        ().RequestCulture.Culture.TwoLetterISOLanguageName;
+}
+<!DOCTYPE html>
+<html lang="$lang->getLanguage()">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Dysnomia.HowToOpenMe.WebApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>HowToOpen.me - @ViewData["Title"]</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Gugi|Titillium+Web" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/style.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dysnomia.HowToOpenMe.WebApp</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <nav class="menu">
+        <span class="menu-title"><a href="/">HowToOpen.me</a></span>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - Dysnomia.HowToOpenMe.WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+        @if (ViewContext.RouteData.Values["controller"].ToString() != "Home") {
+            <form class="search-bar" method="get" action="/search">
+                <input type="search" name="s" placeholder="@Localizer["SEARCH_PLACEHOLDER"]">
+                <input type="submit" value="@Localizer["SEARCH"]">
+            </form>
+        }
+
+        <form method="post" class="menu-language" id="language-form">
+            <div id="language-list"></div>
+            <input type="text" id="selected-language" name="selected-language">
+        </form>
+        <script type="text/javascript" src="/js/iconselect/control/iconselect.js"></script>
+        <script type="text/javascript" src="/js/iconselect/iscroll.js"></script>
+        <script type="text/javascript" src="/js/language-list.js"></script>
+        @if (culture == "en") {
+            <script type="text/javascript">
+                window.addEventListener('load', function () {
+                    changed--;
+                    iconSelect.setSelectedIndex(1);
+                });
+            </script>
+        }
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <footer>
+            <table aria-describedby="First footer">
+                <tr class="first-footer">
+                    <td>
+                        <ul>
+                            <li><h3>HowToOpen.Me</h3></li>
+                            <li><a href="https://howtoopen.me">Accueil</a></li>
+                        </ul>
+                    </td>
+
+                    <td>
+                        <ul>
+                            <li><h3>Autres sites</h3></li>
+                            <li><a href="***REMOVED***" rel="noopener noreferrer" target="_blank">Dehash.me</a></li>
+                            <li><a href="https://howtoopen.me" rel="noopener noreferrer" target="_blank">HowToOpen.me</a></li>
+                            <li><a href="***REMOVED***" rel="noopener noreferrer" target="_blank">Galactae: Space Age Dawn</a></li>
+                        </ul>
+                    </td>
+
+                    <td>
+                        <ul>
+                            <li><h3>Reseaux sociaux</h3></li>
+                            <li><a href="***REMOVED***">Discord</a></li>
+                        </ul>
+                    </td>
+
+                    <td>
+                        <ul>
+                            <li><h3>Divers</h3></li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            <table aria-describedby="Second footer">
+                <tr class="second-footer">
+                    <td>
+                        HowToOpenMe - Crée par <a href="https://dysnomia.studio/" rel="noopener noreferrer" target="_blank">Dysnomia</a><br />
+                        Copyright 2018-@DateTime.Now.Year - Tout droits reservés
+                    </td>
+                </tr>
+            </table>
+        </footer>
+    </div>
 </body>
 </html>

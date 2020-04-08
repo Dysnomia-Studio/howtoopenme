@@ -24,9 +24,18 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 			var extToSoft = new ExtToSoft {
 				ExtensionId = reader.GetString("ExtensionId"),
 				ExtName = reader.GetString("extName"),
+
 				SoftwareId = reader.GetString("SoftwareId"),
+				SoftwareName = reader.GetString("SoftwareName"),
+
 				Use = reader.GetInt32("use"),
-				Free = reader.GetInt32("free")
+				Free = reader.GetInt32("free"),
+
+				Windows = reader.GetInt("windows"),
+				MacOS = reader.GetInt("macos"),
+				Linux = reader.GetInt("linux"),
+				Android = reader.GetInt("android"),
+				Ios = reader.GetInt("ios"),
 			};
 
 			return extToSoft;
@@ -62,7 +71,7 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 			return MapListFromReader(
 				await DbHelper.ExecuteQuery(
 					connection,
-					"SELECT \"extAndSoft\".ext as \"ExtensionId\", \"extAndSoft\".soft as \"SoftwareId\", \"extAndSoft\".\"extName\", \"extAndSoft\".\"use\", \"extAndSoft\".\"free\" FROM \"extAndSoft\""
+					"SELECT \"extAndSoft\".ext as \"ExtensionId\", \"extAndSoft\".soft as \"SoftwareId\", \"extAndSoft\".\"extName\", \"extAndSoft\".\"use\", \"extAndSoft\".\"free\", softwares.name as \"SoftwareName\", softwares.windows, softwares.macos, softwares.linux, softwares.android, softwares.ios FROM \"extAndSoft\" INNER JOIN softwares ON softwares.smallname = \"extAndSoft\".soft"
 				)
 			);
 		}
@@ -70,7 +79,7 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 		public async Task<ExtToSoft> Get(string ext, string extName, string software) {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			return MapFromBlankReader(await DbHelper.ExecuteQuery(connection, "SELECT \"extAndSoft\".ext as \"ExtensionId\", \"extAndSoft\".soft as \"SoftwareId\", \"extAndSoft\".\"extName\", \"extAndSoft\".\"use\", \"extAndSoft\".\"free\" FROM \"extAndSoft\" WHERE ext = @ext AND \"extName\"=@extName AND soft = @software", new Dictionary<string, object>() {
+			return MapFromBlankReader(await DbHelper.ExecuteQuery(connection, "SELECT \"extAndSoft\".ext as \"ExtensionId\", \"extAndSoft\".soft as \"SoftwareId\", \"extAndSoft\".\"extName\", \"extAndSoft\".\"use\", \"extAndSoft\".\"free\", softwares.name as \"SoftwareName\", softwares.windows, softwares.macos, softwares.linux, softwares.android, softwares.ios FROM \"extAndSoft\"  INNER JOIN softwares ON softwares.smallname = \"extAndSoft\".soft WHERE ext = @ext AND \"extName\"=@extName AND soft = @software", new Dictionary<string, object>() {
 				{ "ext", ext },
 				{ "extName", extName },
 				{ "software", software }

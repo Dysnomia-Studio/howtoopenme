@@ -1,0 +1,72 @@
+﻿@using Dysnomia.HowToOpenMe.Common.Models;
+@using Microsoft.AspNetCore.Html;
+@{
+    ViewData["Title"] = "Software";
+    var result = (Software)ViewData["Result"];
+
+    IHtmlContent drawStatus(int value = 0) {
+        string retour = "<img src=\"/img/";
+
+        switch (value) {
+            case 0:
+                retour += "no";
+                break;
+            case 1:
+                retour += "tick";
+                break;
+            case 2:
+                retour += "warning";
+                break;
+        }
+
+        return Html.Raw(retour + ".svg\">");
+    }
+
+    IHtmlContent drawStatusFromBool(bool value = false) {
+        if (value) {
+            return drawStatus(1);
+        } else {
+            return drawStatus(0);
+        }
+    }
+
+    var culture = Context.Features.Get<IRequestCultureFeature>
+        ().RequestCulture.Culture.TwoLetterISOLanguageName;
+}
+
+<section class="corps center-corps corps-view">
+    <h1 class="view-title1">@result.Name</h1>
+    <p class="smallname view-title2">@result.SmallName</p>
+    @if (!string.IsNullOrWhiteSpace(result.URL)) {
+        <p class="view-website">
+            @Localizer["OFFICIAL_WEBSITE"]: <a href="@result.URL" target="_blank">@result.URL</a>
+        </p>
+    }
+    <p>@result.Desc</p>
+</section>
+
+<partial name="_Ad" />
+
+<section class="corps corps-view">
+    <table aria-describedby="Compatible Extensions">
+        <tr>
+            <th scope="col" rowspan="2">@Localizer["EXTENSION"]</th>
+            <th scope="col" colspan="3">@Localizer["POSSIBLE_ACTIONS"]</th>
+        </tr>
+
+        <tr>
+            <th scope="col">@Localizer["IMPORT"]</th>
+            <th scope="col">@Localizer["EXPORT"]</th>
+            <th scope="col">@Localizer["EXECUTE"]</th>
+        </tr>
+
+        @foreach (var extToSoft in result.ExtToSoft) {
+            <tr>
+                <td><a href="/@culture/ext/@extToSoft.ExtensionId">@extToSoft.ExtName</a></td>
+                <td>@drawStatusFromBool(extToSoft.Import)</td>
+                <td>@drawStatusFromBool(extToSoft.Export)</td>
+                <td>@drawStatusFromBool(extToSoft.Exec)</td>
+            </tr>
+        }
+    </table>
+</section>
