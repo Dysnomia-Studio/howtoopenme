@@ -4,8 +4,8 @@ WORKDIR /app
 # Build Project
 COPY . ./
 RUN dotnet sonarscanner begin /k:"howtoopen-me" /d:sonar.host.url="***REMOVED***" /d:sonar.login="***REMOVED***" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.coverage.exclusions="**Test*.cs"
-RUN dotnet restore Dysnomia.HowToOpenMe.sln
-RUN dotnet publish Dysnomia.HowToOpenMe.sln -c Release -o out
+RUN dotnet restore Dysnomia.DehashMe.sln --ignore-failed-sources /p:EnableDefaultItems=false
+RUN dotnet publish Dysnomia.DehashMe.sln --no-restore -c Release -o out
 RUN dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 RUN dotnet sonarscanner end /d:sonar.login="***REMOVED***"
 
