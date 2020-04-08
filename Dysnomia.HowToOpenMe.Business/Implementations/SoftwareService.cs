@@ -18,7 +18,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				return await softwareDataAccess.GetAllSoftwares();
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 
 			return null;
@@ -28,7 +29,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				return await softwareDataAccess.GetSoftware(smallname);
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 
 			return null;
@@ -38,7 +40,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				await softwareDataAccess.CreateSoftware(soft);
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 		}
 
@@ -46,7 +49,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				await softwareDataAccess.UpdateSoftware(soft);
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 		}
 
@@ -54,7 +58,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				await softwareDataAccess.DeleteSoftware(smallname);
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 		}
 
@@ -62,7 +67,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				return await softwareDataAccess.GetTopSoftwares();
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 
 			return new List<Software>();
@@ -72,7 +78,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				await softwareDataAccess.AddView(name);
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -18,7 +18,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				return await extensionDataAccess.GetAllExtensions();
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 
 			return null;
@@ -28,7 +29,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				return await extensionDataAccess.GetExtension(ext);
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 
 			return null;
@@ -38,7 +40,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				await extensionDataAccess.CreateExtension(ext);
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 		}
 
@@ -46,7 +49,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				await extensionDataAccess.UpdateExtension(ext);
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 		}
 
@@ -54,7 +58,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				await extensionDataAccess.DeleteExtension(ext);
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 		}
 
@@ -62,7 +67,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				return await extensionDataAccess.GetTopExtensions();
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 
 			return new List<Extension>();
@@ -72,7 +78,8 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				await extensionDataAccess.AddView(name);
 			} catch (Exception e) {
-				// @TODO: log it
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
 		}
 	}

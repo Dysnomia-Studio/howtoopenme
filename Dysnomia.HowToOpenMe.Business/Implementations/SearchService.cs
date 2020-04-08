@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Dysnomia.HowToOpenMe.Business.Interfaces;
@@ -15,19 +16,26 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 		}
 
 		public async Task<IDictionary<string, string>> Search(string searchText) {
-			Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+			try {
+				Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
 
-			var extensions = await extensionDataAccess.Search(searchText);
-			var softwares = await softwareDataAccess.Search(searchText);
+				var extensions = await extensionDataAccess.Search(searchText);
+				var softwares = await softwareDataAccess.Search(searchText);
 
-			foreach (var extension in extensions) {
-				keyValuePairs.Add("ext/" + extension.Name, extension.Name);
+				foreach (var extension in extensions) {
+					keyValuePairs.Add("ext/" + extension.Ext, extension.Ext + " (" + extension.Name + ")");
+				}
+				foreach (var software in softwares) {
+					keyValuePairs.Add("soft/" + software.SmallName, software.SmallName + " (" + software.Name + ")");
+				}
+
+				return keyValuePairs;
+			} catch (Exception e) {
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
 			}
-			foreach (var software in softwares) {
-				keyValuePairs.Add("soft/" + software.Name, software.Name);
-			}
 
-			return keyValuePairs;
+			return null;
 		}
 	}
 }
