@@ -9,19 +9,19 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" aria-describedby="aliases">
     <thead>
         <tr>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Ext)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.AliasExt)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.ExtName)
             </th>
-            <th></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
