@@ -132,7 +132,9 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 		public async Task AddView(string name) {
 			using var connection = new NpgsqlConnection(connectionString);
 
-			await DbHelper.ExecuteNonQuery(connection, "INSERT INTO public.\"softViews\"(soft, \"date\", \"viewCount\") VALUES (:soft, :currDate, 1) ON CONFLICT (soft, \"date\") DO UPDATE SET \"viewCount\" = public.\"softViews\".\"viewCount\" + 1;");
+			await DbHelper.ExecuteNonQuery(connection, "INSERT INTO public.\"softViews\"(soft, \"date\", \"viewCount\") VALUES (@name, current_date, 1) ON CONFLICT (soft, \"date\") DO UPDATE SET \"viewCount\" = public.\"softViews\".\"viewCount\" + 1;", new Dictionary<string, object>() {
+				{ "name", name },
+			});
 		}
 	}
 }

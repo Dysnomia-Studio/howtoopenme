@@ -31,7 +31,7 @@
             </h2>
             <ol>
                 @foreach (var ext in topExt) {
-                    <li><a href="ext/@ext.Ext">@ext.Ext - @ext.Name</a></li>
+                    <li><a href="/@culture/ext/@ext.Ext">@ext.Ext - @ext.Name</a></li>
                 }
             </ol>
         </div>
@@ -41,7 +41,7 @@
             </h2>
             <ol>
                 @foreach (var soft in topSoft) {
-                    <li><a href="ext/@soft.SmallName">@soft.SmallName - @soft.Name</a></li>
+                    <li><a href="/@culture/soft/@soft.SmallName">@soft.SmallName - @soft.Name</a></li>
                 }
             </ol>
         </div>
