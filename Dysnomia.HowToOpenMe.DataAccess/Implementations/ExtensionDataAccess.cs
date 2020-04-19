@@ -32,7 +32,9 @@ namespace Dysnomia.HowToOpenMe.DataAccess.Implementations {
 		}
 
 		public Extension MapFromBlankReader(IDataReader reader) {
-			reader.Read();
+			if (!reader.Read()) {
+				return null;
+			}
 
 			return MapFromReader(reader);
 		}
