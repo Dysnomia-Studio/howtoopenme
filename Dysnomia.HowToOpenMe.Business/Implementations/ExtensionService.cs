@@ -33,6 +33,11 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 		public async Task<Extension> GetExtension(string ext) {
 			try {
 				var extension = await extensionDataAccess.GetExtension(ext);
+
+				if (extension == null) {
+					return null;
+				}
+
 				extension.Alias = (await aliasDataAccess.GetAllAliases())
 					.Where((Alias alias) => alias.Ext == extension.Ext && alias.ExtName == extension.Name)
 					.Select((elt) => "." + elt.ExtName)

@@ -32,6 +32,10 @@ namespace Dysnomia.HowToOpenMe.Business.Implementations {
 			try {
 				var software = await softwareDataAccess.GetSoftware(smallname);
 
+				if (software == null) {
+					return null;
+				}
+
 				software.ExtToSoft = (await extToSoftDataAccess.GetAll())
 					.Where((ExtToSoft extToSoft) => extToSoft.SoftwareId == software.SmallName)
 					.ToList();
